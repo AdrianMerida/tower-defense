@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Tower defense!</title>
+
+  <!-- SCRIPTS -->
+  <script type="text/javascript" src="constants.js"></script>
+  <script type="text/javascript" src="rectangle.js"></script>
+  <script type="text/javascript" src="board.js"></script>
+  <script type="text/javascript" src="fireTower.js"></script>
+  <script type="text/javascript" src="enemie.js"></script>
+  <script type="text/javascript" src="skeleton.js"></script>
+  <script type="text/javascript" src="game.js"></script>
+  <script type="text/javascript" src="script.js"></script>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css">
+  <title>Document</title>
+</head>
+
+<body>
+  <div class=game>
+    <button id="start-btn">Start Game</button>
+    <div id="user-panel">
+      <div class="user-hp">
+        <span id="hp">Vidas: </span><span id="hp-value">20</span>
+      </div>
+      <div class="user-gold">
+        <span id="gold">Oro: </span><span id="gold-value">0</span>
+      </div>
+    </div>
+    <div id="game-board">
+      <canvas id="canvas" width="1200" height="600"></canvas>
+    </div>
+  </div>
+</body>
+
+<!-- <script>
+  function resizeCanvas() {
+    var canvs = document.getElementById("canvas");
+    canvs.width = window.innerWidth;
+    canvs.height = window.innerHeight;
+  }
+</script> -->
+
+</html>
