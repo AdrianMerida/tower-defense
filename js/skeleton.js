@@ -15,8 +15,8 @@ class Skeleton extends Enemie {
 
     // Imagen del enemigo
     this.img = new Image()
-    this.img.src = "./Images/skeleton.png"
-    this.img.frames = 4
+    this.img.src = "./Images/skeleton2.png"
+    this.img.frames = 3
     this.img.frameIndex = 0
 
     this.pathIndex = 0
@@ -27,6 +27,8 @@ class Skeleton extends Enemie {
 
   // poner un círculo para asegurarnos que cuando llega el enemigo al rango muere
   draw() {
+
+    // Imagen
     this.ctx.drawImage(
       this.img,
       this.img.frameIndex * this.img.width / this.img.frames,
@@ -38,6 +40,17 @@ class Skeleton extends Enemie {
       this.w,
       this.h
     )
+
+    // Vida
+    new Rectangle(
+      this.ctx,
+      this.x,
+      this.y - this.h/3,
+      this.w,
+      5,
+      '#10E348'
+    ).draw()
+
     this._animate()
 
   }
@@ -50,7 +63,6 @@ class Skeleton extends Enemie {
   }
 
   _followPath() {
-
     
     const distX = (this.path[this.pathIndex][0] - this.x0) / 100
     const distY = (this.path[this.pathIndex][1] - this.y0) / 100
