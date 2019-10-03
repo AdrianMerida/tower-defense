@@ -1,12 +1,15 @@
 class Skeleton extends Enemie {
 
-  constructor(ctx, name) {
-    super(ctx, name)
+  constructor(ctx, name, path) {
+    super(ctx, name, path)
     this.x = 0
-    this.w = 10
-    this.h = 10
+    this.w = 30
+    this.h = 30
     this.y = this.ctx.canvas.height / 2 - this.w / 2
-    this.vx = 1
+   
+    this.x0 = this.x
+    this.y0 = this.y
+
     this.goldGiven = 10
     this.hp = 10
 
@@ -15,6 +18,8 @@ class Skeleton extends Enemie {
     this.img.src = "./Images/skeleton.png"
     this.img.frames = 4
     this.img.frameIndex = 0
+
+    this.pathIndex = 0
 
     this.tick = 0
   }
@@ -33,14 +38,35 @@ class Skeleton extends Enemie {
       this.w,
       this.h
     )
-
-
     this._animate()
 
   }
 
   move() {
-    this.x += this.vx
+    // Mientras haya posiciones en el array
+    if (this.pathIndex < this.path.length) {
+      this._followPath()
+    } 
+  }
+
+  _followPath() {
+
+    
+    const distX = (this.path[this.pathIndex][0] - this.x0) / 100
+    const distY = (this.path[this.pathIndex][1] - this.y0) / 100
+    this.x += distX
+    this.y += distY
+ 
+    if ((this.x + 1) >= this.path[this.pathIndex][0] && 
+        (this.x - 1) <= this.path[this.pathIndex][0] &&
+        (this.y + 1) >= this.path[this.pathIndex][1] &&
+        (this.y - 1) <= this.path[this.pathIndex][1]) {
+
+      this.x0 = this.x
+      this.y0 = this.y
+      this.pathIndex += 1
+    }
+
   }
 
   _animate() {

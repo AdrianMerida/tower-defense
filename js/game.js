@@ -3,12 +3,25 @@ class Game {
     this.ctx = ctx
     this.intervalID = null
     this.board = new Board(ctx)
-    this.enemies = []
-    this.towers = [new FireTower(this.ctx,this.ctx.canvas.width/2, this.ctx.canvas.height/2)] // De momento se pone una a pelo
+    this.ctxW = this.ctx.canvas.width
+    this.ctxH = this.ctx.canvas.height
+    this.path = [
+      [0.1 * this.ctxW, 0.5 * this.ctxH],
+      [0.1 * this.ctxW, 0.2 * this.ctxH],
+      [0.3 * this.ctxW, 0.2 * this.ctxH],
+      [0.3 * this.ctxW, 0.8 * this.ctxH],
+      [0.5 * this.ctxW, 0.8 * this.ctxH],
+      [0.5 * this.ctxW, 0.5 * this.ctxH],
+      [0.7 * this.ctxW, 0.5 * this.ctxH],
+      [0.7 * this.ctxW, 0.2 * this.ctxH],
+      [0.9 * this.ctxW, 0.2 * this.ctxH],
+      [0.9 * this.ctxW, 0.5 * this.ctxH]
+    ]
+    this.enemies = [new Skeleton(this.ctx, "Esqueleto", this.path)]
+    this.towers = [new FireTower(this.ctx,this.ctx.canvas.width/2, this.ctx.canvas.height/2)]
     this.tick = 0
-    this.userHP = 20
+    this.userHP = 20  
   }
-
 
   run() {
     this.intervalId = setInterval(() => {
@@ -16,10 +29,10 @@ class Game {
       this._draw()
       this._move()
       this._checkEnemieInTowerRange()
-      this._checkEnemiesReachGoal()
-      this._updateUserHP()
-      this._clearEnemiesReachGoal()
-      this._clearDeadEnemies()
+      // this._checkEnemiesReachGoal()
+      // this._updateUserHP()
+      // this._clearEnemiesReachGoal()
+      // this._clearDeadEnemies()
 
     }, FPS)
   }
@@ -33,11 +46,11 @@ class Game {
     this.enemies.forEach(e => e.draw())
     this.towers.forEach(e => e.draw())
 
-    this.tick++
-    if (this.tick % 100 === 0) {
-      this.tick = 0
-      this._addEnemie()
-    }
+    // this.tick++
+    // if (this.tick % 100 === 0) {
+    //   this.tick = 0
+    //    this._addEnemie()
+    // }
   }
 
   _move() {
@@ -75,6 +88,7 @@ class Game {
       this.enemies.forEach(enemie => {
         if (tower._enemieInRange(enemie)) {
           enemie.receiveDamage(tower.getPower())
+          console.log("in range!")
         }
       })
     })

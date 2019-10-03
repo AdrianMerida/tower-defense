@@ -1,7 +1,8 @@
 class Enemie {
-  constructor(ctx, name) {
+  constructor(ctx, name, path) {
     this.ctx = ctx
     this.name = name
+    this.path = path
   }
 
   setHP(value) {
