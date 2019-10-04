@@ -17,8 +17,8 @@ class FireTower {
   draw() {
     new Rectangle(
       this.ctx,
-      this.x,
-      this.y,
+      this.x - this.w / 2,
+      this.y - this.h / 2,
       this.w,
       this.h,
       '#db3535'
@@ -27,8 +27,8 @@ class FireTower {
 
     this.ctx.beginPath()
     this.ctx.arc(
-      this.x + this.w/2,
-      this.y + this.h/2,
+      this.x,
+      this.y,
       this.range,
       0, 2 * Math.PI
     );
