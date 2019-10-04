@@ -1,10 +1,11 @@
 class Board {
-  constructor(ctx) {
+  constructor(ctx, path) {
     this.ctx = ctx
     this.x = 0
     this.y = 0
     this.w = this.ctx.canvas.width
     this.h = this.ctx.canvas.height
+    this.path = path
 
     // Demomento sin imagen
     this.img = new Image()

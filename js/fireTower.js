@@ -24,7 +24,6 @@ class FireTower {
       '#db3535'
     ).draw()
 
-
     this.ctx.beginPath()
     this.ctx.arc(
       this.x,

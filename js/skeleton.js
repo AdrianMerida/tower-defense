@@ -6,9 +6,10 @@ class Skeleton extends Enemie {
     this.w = 30
     this.h = 30
     this.y = this.ctx.canvas.height / 2 - this.w / 2
-   
     this.x0 = this.x
     this.y0 = this.y
+    
+    this.speed = 1.5
 
     this.goldGiven = 10
     this.hp = 50
@@ -65,12 +66,39 @@ class Skeleton extends Enemie {
 
   _followPath() {
     
-    const distX = (this.path[this.pathIndex][0] - this.x0) / 100
-    const distY = (this.path[this.pathIndex][1] - this.y0) / 100
-    this.x += distX
-    this.y += distY
+    // const distX = (this.path[this.pathIndex][0] - this.x0) / 100
+    // const distY = (this.path[this.pathIndex][1] - this.y0) / 100
+    // this.x += distX
+    // this.y += distY
  
-    if ((this.x + 1) >= this.path[this.pathIndex][0] && 
+    // if ((this.x + 1) >= this.path[this.pathIndex][0] && 
+    //     (this.x - 1) <= this.path[this.pathIndex][0] &&
+    //     (this.y + 1) >= this.path[this.pathIndex][1] &&
+    //     (this.y - 1) <= this.path[this.pathIndex][1]) {
+
+    //   this.x0 = this.x
+    //   this.y0 = this.y
+    //   this.pathIndex += 1
+    // }
+
+    const distX = (this.path[this.pathIndex][0] - this.x0)
+    const distY = (this.path[this.pathIndex][1] - this.y0)
+    const percentageX = distX / (distX + distY)
+    const percentageY = 1 - percentageX
+
+    if (distX > 0) {
+      this.x += this.speed * percentageX
+    } else {
+      this.x -= this.speed * percentageX
+    }
+
+    if (distY > 0) {
+      this.y += this.speed * percentageY
+    } else {
+      this.y -= this.speed * percentageY
+    }
+
+     if ((this.x + 1) >= this.path[this.pathIndex][0] && 
         (this.x - 1) <= this.path[this.pathIndex][0] &&
         (this.y + 1) >= this.path[this.pathIndex][1] &&
         (this.y - 1) <= this.path[this.pathIndex][1]) {

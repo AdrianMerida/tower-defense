@@ -2,12 +2,11 @@ class Game {
   constructor(ctx) {
     this.ctx = ctx
     this.intervalID = null
-    this.board = new Board(ctx)
     this.ctxW = this.ctx.canvas.width
     this.ctxH = this.ctx.canvas.height
 
     this.path = [
-      [0.1 * this.ctxW, 0.5 * this.ctxH],
+      [0.6 * this.ctxW, 0.5 * this.ctxH],
       [0.1 * this.ctxW, 0.2 * this.ctxH],
       [0.3 * this.ctxW, 0.2 * this.ctxH],
       [0.3 * this.ctxW, 0.8 * this.ctxH],
@@ -19,6 +18,7 @@ class Game {
       [0.9 * this.ctxW, 0.5 * this.ctxH]
     ]
 
+    this.board = new Board(this.ctx, this.path)
     this.enemies = [new Skeleton(this.ctx, "Esqueleto", this.path)]
     // this.towers = [new FireTower(this.ctx, this.ctx.canvas.width / 2, this.ctx.canvas.height / 2)]
     this.towers = []
