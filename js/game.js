@@ -5,6 +5,7 @@ class Game {
     this.board = new Board(ctx)
     this.ctxW = this.ctx.canvas.width
     this.ctxH = this.ctx.canvas.height
+
     this.path = [
       [0.1 * this.ctxW, 0.5 * this.ctxH],
       [0.1 * this.ctxW, 0.2 * this.ctxH],
@@ -17,10 +18,12 @@ class Game {
       [0.9 * this.ctxW, 0.2 * this.ctxH],
       [0.9 * this.ctxW, 0.5 * this.ctxH]
     ]
+
     this.enemies = [new Skeleton(this.ctx, "Esqueleto", this.path)]
-    this.towers = [new FireTower(this.ctx,this.ctx.canvas.width/2, this.ctx.canvas.height/2)]
+    // this.towers = [new FireTower(this.ctx, this.ctx.canvas.width / 2, this.ctx.canvas.height / 2)]
+    this.towers = []
     this.tick = 0
-    this.userHP = 20  
+    this.userHP = 20
   }
 
   run() {
@@ -29,10 +32,10 @@ class Game {
       this._draw()
       this._move()
       this._checkEnemieInTowerRange()
-      // this._checkEnemiesReachGoal()
-      // this._updateUserHP()
-      // this._clearEnemiesReachGoal()
-      // this._clearDeadEnemies()
+      this._checkEnemiesReachGoal()
+      this._updateUserHP()
+      this._clearEnemiesReachGoal()
+      this._clearDeadEnemies()
 
     }, FPS)
   }
@@ -88,7 +91,7 @@ class Game {
       this.enemies.forEach(enemie => {
         if (tower._enemieInRange(enemie)) {
           enemie.receiveDamage(tower.getPower())
-          console.log("in range!")
+          // console.log("in range!")
         }
       })
     })
@@ -102,6 +105,14 @@ class Game {
   _updateUserHP() {
     const HP = document.getElementById("hp-value")
     HP.innerText = this.userHP
+  }
+
+  _createTower(obj, type) {
+    switch (type) {
+      case "fire":
+        this.towers.push(new FireTower(this.ctx, obj.x, obj.y))
+        break;
+    }
   }
 
 }

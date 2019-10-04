@@ -11,7 +11,8 @@ class Skeleton extends Enemie {
     this.y0 = this.y
 
     this.goldGiven = 10
-    this.hp = 10
+    this.hp = 50
+    this.hp0 = this.hp
 
     // Imagen del enemigo
     this.img = new Image()
@@ -46,7 +47,7 @@ class Skeleton extends Enemie {
       this.ctx,
       this.x,
       this.y - this.h/3,
-      this.w,
+      this.w * this.hp / this.hp0,
       5,
       '#10E348'
     ).draw()
