@@ -6,14 +6,14 @@ class Game {
     this.ctxH = this.ctx.canvas.height
 
     this.path = [
-      [0.6 * this.ctxW, 0.5 * this.ctxH],
+      [0.1 * this.ctxW, 0.5 * this.ctxH],
       [0.1 * this.ctxW, 0.2 * this.ctxH],
-      [0.3 * this.ctxW, 0.2 * this.ctxH],
-      [0.3 * this.ctxW, 0.8 * this.ctxH],
+      [0.7 * this.ctxW, 0.2 * this.ctxH],
+      [0.7 * this.ctxW, 0.8 * this.ctxH],
       [0.5 * this.ctxW, 0.8 * this.ctxH],
       [0.5 * this.ctxW, 0.5 * this.ctxH],
-      [0.7 * this.ctxW, 0.5 * this.ctxH],
-      [0.7 * this.ctxW, 0.2 * this.ctxH],
+      [0.3 * this.ctxW, 0.5 * this.ctxH],
+      [0.3 * this.ctxW, 0.2 * this.ctxH],
       [0.9 * this.ctxW, 0.2 * this.ctxH],
       [0.9 * this.ctxW, 0.5 * this.ctxH]
     ]
@@ -31,7 +31,7 @@ class Game {
       this._clear()
       this._draw()
       this._move()
-      this._checkEnemieInTowerRange()
+      this._checkEnemyInTowerRange()
       this._checkEnemiesReachGoal()
       this._updateUserHP()
       this._clearEnemiesReachGoal()
@@ -49,11 +49,11 @@ class Game {
     this.enemies.forEach(e => e.draw())
     this.towers.forEach(e => e.draw())
 
-    // this.tick++
-    // if (this.tick % 100 === 0) {
-    //   this.tick = 0
-    //    this._addEnemie()
-    // }
+    this.tick++
+    if (this.tick % 100 === 0) {
+      this.tick = 0
+      this._addEnemy()
+    }
   }
 
   _move() {
@@ -61,8 +61,8 @@ class Game {
   }
 
   // ENEMIGOS
-  _addEnemie() {
-    this.enemies.push(new Skeleton(this.ctx, "Esqueleto"))
+  _addEnemy() {
+    this.enemies.push(new Skeleton(this.ctx, "Esqueleto", this.path))
   }
 
   _checkEnemiesReachGoal() {
@@ -86,7 +86,7 @@ class Game {
   }
 
   // TORRES
-  _checkEnemieInTowerRange() {
+  _checkEnemyInTowerRange() {
     this.towers.forEach(tower => {
       this.enemies.forEach(enemie => {
         if (tower._enemieInRange(enemie)) {

@@ -49,7 +49,7 @@ class FireTower {
 
   _enemieInRange(e) {
     // Si la hipotenusa es <= al rango de la torre, devuelve true
-    return (Math.sqrt((e.x - this.x) * (e.x - this.x) + (e.y - this.y) * (e.y - this.y)) <= this.range)
+    return (Math.sqrt((e.x - this.x) * (e.x - this.x) + (e.y - this.y) * (e.y - this.y)) <= this.range) 
   }
 
 }

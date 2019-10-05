@@ -2,14 +2,13 @@ class Skeleton extends Enemie {
 
   constructor(ctx, name, path) {
     super(ctx, name, path)
-    this.x = 0
+    this.x = this.path[0][0] -2
+    this.y = this.path[0][1] -2
     this.w = 30
     this.h = 30
-    this.y = this.ctx.canvas.height / 2 - this.w / 2
     this.x0 = this.x
     this.y0 = this.y
-    
-    this.speed = 1.5
+    this.speed = 5
 
     this.goldGiven = 10
     this.hp = 50
@@ -37,8 +36,8 @@ class Skeleton extends Enemie {
       this.img.height / 4,
       this.img.width / this.img.frames,
       this.img.height / 4,
-      this.x,
-      this.y,
+      this.x - this.w / 2,
+      this.y - this.h / 2,
       this.w,
       this.h
     )
@@ -46,8 +45,8 @@ class Skeleton extends Enemie {
     // Vida
     new Rectangle(
       this.ctx,
-      this.x,
-      this.y - this.h/3,
+      this.x - this.w / 2,
+      this.y - this.h / 2,
       this.w * this.hp / this.hp0,
       5,
       '#10E348'
@@ -61,47 +60,33 @@ class Skeleton extends Enemie {
     // Mientras haya posiciones en el array
     if (this.pathIndex < this.path.length) {
       this._followPath()
-    } 
+    }
   }
 
   _followPath() {
-    
-    // const distX = (this.path[this.pathIndex][0] - this.x0) / 100
-    // const distY = (this.path[this.pathIndex][1] - this.y0) / 100
-    // this.x += distX
-    // this.y += distY
- 
-    // if ((this.x + 1) >= this.path[this.pathIndex][0] && 
-    //     (this.x - 1) <= this.path[this.pathIndex][0] &&
-    //     (this.y + 1) >= this.path[this.pathIndex][1] &&
-    //     (this.y - 1) <= this.path[this.pathIndex][1]) {
-
-    //   this.x0 = this.x
-    //   this.y0 = this.y
-    //   this.pathIndex += 1
-    // }
 
     const distX = (this.path[this.pathIndex][0] - this.x0)
     const distY = (this.path[this.pathIndex][1] - this.y0)
-    const percentageX = distX / (distX + distY)
+    const percentageX = (Math.abs(distX) / (Math.abs(distX) + Math.abs(distY)))
     const percentageY = 1 - percentageX
 
     if (distX > 0) {
-      this.x += this.speed * percentageX
+      this.x += this.speed * percentageX // derecha
     } else {
-      this.x -= this.speed * percentageX
+      this.x -= this.speed * percentageX // izquierda
     }
 
     if (distY > 0) {
-      this.y += this.speed * percentageY
+      this.y += this.speed * percentageY // abajo
     } else {
-      this.y -= this.speed * percentageY
+      this.y -= this.speed * percentageY // arriba
     }
 
-     if ((this.x + 1) >= this.path[this.pathIndex][0] && 
-        (this.x - 1) <= this.path[this.pathIndex][0] &&
-        (this.y + 1) >= this.path[this.pathIndex][1] &&
-        (this.y - 1) <= this.path[this.pathIndex][1]) {
+    // Si llega al destino marcado, cambia a nuevo destino
+    if ((this.x + 1) >= this.path[this.pathIndex][0] &&
+      (this.x - 1) <= this.path[this.pathIndex][0] &&
+      (this.y + 1) >= this.path[this.pathIndex][1] &&
+      (this.y - 1) <= this.path[this.pathIndex][1]) {
 
       this.x0 = this.x
       this.y0 = this.y
