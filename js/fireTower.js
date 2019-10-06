@@ -3,45 +3,53 @@ class FireTower {
     this.ctx = ctx
     this.x = x
     this.y = y
-    this.w = 20
-    this.h = 20
+    this.w = 30
+    this.h = 30
     this.power = 1
     this.cost = 100
     this.range = 100
 
     this.bullets = []
-    this.shootTick = 0
-
+  
     // Para más adelante
     this.img = new Image()
-    this.img.src = ""
+    this.img.src = "./Images/fireTower.png"
   }
 
   draw() {
 
+    // // Tower
+    // new Rectangle(
+    //   this.ctx,
+    //   this.x - this.w / 2,
+    //   this.y - this.h / 2,
+    //   this.w,
+    //   this.h,
+    //   '#db3535'
+    // ).draw()
+
     // Tower
-    new Rectangle(
-      this.ctx,
+    this.ctx.drawImage(
+      this.img,
       this.x - this.w / 2,
       this.y - this.h / 2,
       this.w,
-      this.h,
-      '#db3535'
-    ).draw()
-
-    // Range
-    this.ctx.beginPath()
-    this.ctx.arc(
-      this.x,
-      this.y,
-      this.range,
-      0, 2 * Math.PI
-    );
-    this.ctx.stroke()
-    this.ctx.closePath()
+      this.h
+    )
+    
+    // // Range
+    // this.ctx.beginPath()
+    // this.ctx.arc(
+    //   this.x,
+    //   this.y,
+    //   this.range,
+    //   0, 2 * Math.PI
+    // );
+    // this.ctx.stroke()
+    // this.ctx.closePath()
 
     this.bullets.forEach(b => b.draw())
-    this._deleteBullets()  
+    this._deleteBullets()
   }
 
   move() {
@@ -66,10 +74,8 @@ class FireTower {
     const inRange = Math.sqrt((e.x - this.x) * (e.x - this.x) + (e.y - this.y) * (e.y - this.y)) <= this.range
     const bullet = new TowerBullet(this.ctx, this.x, this.y, e.x, e.y)
 
-    this.tick ++
-    if (inRange && this.tick === 20) {
+    if (inRange) {
       this.bullets.push(bullet)
-      this.tick = 0
     }
 
     return inRange

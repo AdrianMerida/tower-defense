@@ -3,14 +3,28 @@ window.onload = function () {
   const canvas = document.getElementById("canvas")
   const ctx = canvas.getContext("2d")
   const game = new Game(ctx)
+  const fireTower = document.getElementById("fire-tower")
+  let towerActive = ""
 
-  // EVENTS
-  canvas.onmousedown = (e) => game.createTower(getCursorPosition(canvas, e),'fire')
+  // Events
+  canvas.onmousedown = (e) => game.createTower(getCursorPosition(canvas, e), towerActive)
+
+
+  // Towers
+  fireTower.onclick = function () {
+    if (towerActive === "") {
+      towerActive = "fire"
+    } else {
+      towerActive = ""
+    }
+    fireTower.classList.toggle("tower-active")
+  }
+  
   document.getElementById("start-btn").onclick = function () {
     startGame();
   };
 
-  // FUNCTIONS
+  // Functions
   function startGame() {
      game.run()
   }

@@ -10,6 +10,7 @@ class TowerBullet {
   }
 
   draw() {
+    this.ctx.fillStyle = 'red'
     this.ctx.beginPath();
     this.ctx.arc(this.x, this.y, this.r, 0, 2 * Math.PI);
     this.ctx.fill();
