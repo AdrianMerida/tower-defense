@@ -6,6 +6,7 @@ class Game {
     this.ctxH = this.ctx.canvas.height
 
     this.path = [
+      [0, this.ctxH / 2],
       [0.1 * this.ctxW, 0.5 * this.ctxH],
       [0.1 * this.ctxW, 0.2 * this.ctxH],
       [0.7 * this.ctxW, 0.2 * this.ctxH],
@@ -15,10 +16,13 @@ class Game {
       [0.3 * this.ctxW, 0.5 * this.ctxH],
       [0.3 * this.ctxW, 0.2 * this.ctxH],
       [0.9 * this.ctxW, 0.2 * this.ctxH],
-      [0.9 * this.ctxW, 0.5 * this.ctxH]
+      [0.9 * this.ctxW, 0.5 * this.ctxH],
+      [this.ctxW, this.ctxH / 2]
     ]
 
-    this.board = new Board(this.ctx, this.path)
+    this.widthPath = 30
+
+    this.board = new Board(this.ctx, this.path, this.widthPath)
     this.enemies = [new Skeleton(this.ctx, "Esqueleto", this.path)]
     // this.towers = [new FireTower(this.ctx, this.ctx.canvas.width / 2, this.ctx.canvas.height / 2)]
     this.towers = []
@@ -107,11 +111,18 @@ class Game {
     HP.innerText = this.userHP
   }
 
-  _createTower(obj, type) {
-    switch (type) {
-      case "fire":
-        this.towers.push(new FireTower(this.ctx, obj.x, obj.y))
-        break;
+  createTower(pos, type) {
+    if (pos.click === LEFT_CLICK) {
+      switch (type) {
+        case "fire":
+          const tower = new FireTower(this.ctx, pos.x, pos.y)
+
+          if (!tower.inPath(this.path, pos, this.widthPath)) {
+            this.towers.push(tower)
+          }
+
+          break;
+      }
     }
   }
 

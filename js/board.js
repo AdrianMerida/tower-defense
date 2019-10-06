@@ -1,12 +1,12 @@
 class Board {
-  constructor(ctx, path) {
+  constructor(ctx, path, widthPath) {
     this.ctx = ctx
     this.x = 0
     this.y = 0
     this.w = this.ctx.canvas.width
     this.h = this.ctx.canvas.height
     this.path = path
-    this.widthPath = 30
+    this.widthPath = widthPath
 
     // Suelo
     this.img = new Image()
@@ -38,12 +38,8 @@ class Board {
 
       const dX = (this.path[i + 1][0] - this.path[i][0])
       const dY = (this.path[i + 1][1] - this.path[i][1])
-
-      if ((dX > 0 && dY < 0) || (dX < 0 && dY > 0)) { // Arriba - derecha / Abajo - izquierda
-
-      } else if ((dX > 0 && dY > 0) || (dX < 0 && dY < 0)) { // Abajo - derecha / Arriba - izquierda
-
-      } else if (dX === 0) { // Arriba - abajo
+      
+      if (dX === 0) { // Arriba - abajo
         if (dY > 0) {
           this._drawVerticalDown(i)
         } else {

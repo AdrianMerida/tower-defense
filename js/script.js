@@ -5,7 +5,7 @@ window.onload = function () {
   const game = new Game(ctx)
 
   // EVENTS
-  canvas.onmousedown = (e) => game._createTower(getCursorPosition(canvas, e),'fire')
+  canvas.onmousedown = (e) => game.createTower(getCursorPosition(canvas, e),'fire')
   document.getElementById("start-btn").onclick = function () {
     startGame();
   };
@@ -21,7 +21,8 @@ window.onload = function () {
     const y = event.clientY - rect.top
     return {
       "x": x,
-      "y": y
+      "y": y,
+      "click": event.button
     }
   }
 };

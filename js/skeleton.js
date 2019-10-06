@@ -8,7 +8,7 @@ class Skeleton extends Enemie {
     this.h = 30
     this.x0 = this.x
     this.y0 = this.y
-    this.speed = 5
+    this.speed = 2
 
     this.goldGiven = 10
     this.hp = 50

@@ -49,7 +49,38 @@ class FireTower {
 
   _enemieInRange(e) {
     // Si la hipotenusa es <= al rango de la torre, devuelve true
-    return (Math.sqrt((e.x - this.x) * (e.x - this.x) + (e.y - this.y) * (e.y - this.y)) <= this.range) 
+    return (Math.sqrt((e.x - this.x) * (e.x - this.x) + (e.y - this.y) * (e.y - this.y)) <= this.range)
+  }
+
+  inPath(path, pos, widthPath) {
+    let collide = false
+
+    for (let i = 0; i < path.length - 1; i++) {
+      const dX = path[i][0] - path[i + 1][0]
+      const dY = path[i][1] - path[i + 1][1]
+
+      if (dX === 0) {// Vertical
+        if (Math.abs(path[i][0] - pos.x) < (widthPath + this.w) &&
+          (
+            (pos.y > path[i][1] - widthPath && pos.y < path[i + 1][1] + widthPath) ||
+            (pos.y < path[i][1] + widthPath && pos.y > path[i + 1][1] - widthPath)
+          )
+        ) {
+          collide = true
+        }
+      } else if (dY === 0) { // Horizontal
+        if (Math.abs(path[i][1] - pos.y) < (widthPath + this.h) &&
+          (
+            (pos.x > path[i][0] - widthPath && pos.x < path[i + 1][0] + widthPath) ||
+            (pos.x < path[i][0] + widthPath && pos.x > path[i + 1][0] - widthPath)
+          )
+        ) {
+          collide = true
+        }
+      }
+    }
+
+    return collide
   }
 
 }
