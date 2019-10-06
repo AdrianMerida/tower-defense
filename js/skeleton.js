@@ -11,7 +11,7 @@ class Skeleton extends Enemie {
     this.speed = 2
 
     this.goldGiven = 10
-    this.hp = 50
+    this.hp = 100
     this.hp0 = this.hp
 
     // Imagen del enemigo

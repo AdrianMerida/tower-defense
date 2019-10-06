@@ -51,7 +51,7 @@ class Game {
   _draw() {
     this.board.draw()
     this.enemies.forEach(e => e.draw())
-    this.towers.forEach(e => e.draw())
+    this.towers.forEach(t => t.draw())
 
     this.tick++
     if (this.tick % 100 === 0) {
@@ -62,6 +62,7 @@ class Game {
 
   _move() {
     this.enemies.forEach(e => e.move())
+    this.towers.forEach(t => t.move())
   }
 
   // ENEMIGOS
@@ -93,9 +94,8 @@ class Game {
   _checkEnemyInTowerRange() {
     this.towers.forEach(tower => {
       this.enemies.forEach(enemie => {
-        if (tower._enemieInRange(enemie)) {
+        if (tower.enemyInRange(enemie)) {
           enemie.receiveDamage(tower.getPower())
-          // console.log("in range!")
         }
       })
     })

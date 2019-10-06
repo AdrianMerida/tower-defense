@@ -5,9 +5,12 @@ class FireTower {
     this.y = y
     this.w = 20
     this.h = 20
-    this.power = 2
+    this.power = 1
     this.cost = 100
-    this.range = 50
+    this.range = 100
+
+    this.bullets = []
+    this.shootTick = 0
 
     // Para más adelante
     this.img = new Image()
@@ -15,6 +18,8 @@ class FireTower {
   }
 
   draw() {
+
+    // Tower
     new Rectangle(
       this.ctx,
       this.x - this.w / 2,
@@ -24,6 +29,7 @@ class FireTower {
       '#db3535'
     ).draw()
 
+    // Range
     this.ctx.beginPath()
     this.ctx.arc(
       this.x,
@@ -33,10 +39,14 @@ class FireTower {
     );
     this.ctx.stroke()
     this.ctx.closePath()
+
+    this.bullets.forEach(b => b.draw())
+    this._deleteBullets()  
   }
 
   move() {
     this._animate()
+    this.bullets.forEach(b => b.move())
   }
 
   _animate() {
@@ -47,9 +57,22 @@ class FireTower {
     return this.power
   }
 
-  _enemieInRange(e) {
+  _deleteBullets() {
+    this.bullets = this.bullets.filter(b => b.reachFinalPosition() === false)
+  }
+
+  enemyInRange(e) {
     // Si la hipotenusa es <= al rango de la torre, devuelve true
-    return (Math.sqrt((e.x - this.x) * (e.x - this.x) + (e.y - this.y) * (e.y - this.y)) <= this.range)
+    const inRange = Math.sqrt((e.x - this.x) * (e.x - this.x) + (e.y - this.y) * (e.y - this.y)) <= this.range
+    const bullet = new TowerBullet(this.ctx, this.x, this.y, e.x, e.y)
+
+    this.tick ++
+    if (inRange && this.tick === 20) {
+      this.bullets.push(bullet)
+      this.tick = 0
+    }
+
+    return inRange
   }
 
   inPath(path, pos, widthPath) {
