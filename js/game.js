@@ -23,12 +23,11 @@ class Game {
     this.widthPath = 30
 
     this.board = new Board(this.ctx, this.path, this.widthPath)
-    this.enemies = [new Skeleton(this.ctx, "Esqueleto", this.path)]
-    // this.towers = [new FireTower(this.ctx, this.ctx.canvas.width / 2, this.ctx.canvas.height / 2)]
+    this.enemies = []
     this.towers = []
     this.tick = 0
     this.userHP = 20
-    this.userGold = 1000;
+    this.userGold = 300;
   }
 
   run() {

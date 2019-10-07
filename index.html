@@ -25,30 +25,26 @@
 
 <body>
   <div class=game>
-    <button id="start-btn">Start Game</button>
     <div id="user-panel">
-      <div class="user-hp">
+      <button id="start-btn" class="ml-10">Start Game</button>
+      <div class="user-hp bg-white p-10 ml-10">
         <span id="hp">Vidas: </span><span id="hp-value">20</span>
       </div>
-      <div class="user-gold">
+      <div class="user-gold bg-white p-10 ml-10">
         <span id="gold">Oro: </span><span id="gold-value">0</span>
       </div>
-      <div class="towers">
-        <img id="fire-tower" src="./Images/fireTower.png">
+      <div class="towers ml-10">
+        <div class="fire-tower">
+          <img id="fire-tower" class="ml-10" src="./Images/fireTower.png">
+          <span id="fire-qty" class="p-10">0</span>
+        </div>
       </div>
     </div>
+
     <div id="game-board">
-      <canvas id="canvas" width="1400" height="600"></canvas>
+      <canvas id="canvas" width="1425" height="650"></canvas>
     </div>
   </div>
 </body>
-
-<!-- <script>
-  function resizeCanvas() {
-    var canvs = document.getElementById("canvas");
-    canvs.width = window.innerWidth;
-    canvs.height = window.innerHeight;
-  }
-</script> -->
 
 </html>

@@ -18,17 +18,6 @@ window.onload = function () {
     fireTower.classList.toggle("tower-active")
   });
 
-
-  // // Towers
-  // fireTower.onclick = function () {
-  //   if (towerActive === "") {
-  //     towerActive = "fire"
-  //   } else {
-  //     towerActive = ""
-  //   }
-  //   fireTower.classList.toggle("tower-active")
-  // }
-
   document.getElementById("start-btn").onclick = function () {
     startGame();
   };
