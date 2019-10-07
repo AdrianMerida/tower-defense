@@ -11,7 +11,7 @@ class Skeleton extends Enemie {
     this.speed = 2
 
     this.goldGiven = 10
-    this.hp = 500 // Vida
+    this.hp = 200 // Vida
     this.hp0 = this.hp
 
     // Imagen del enemigo
@@ -110,7 +110,7 @@ class Skeleton extends Enemie {
     return ((this.x + this.w) > this.ctx.canvas.width)
   }
 
-  _isDead() {
+  isDead() {
     return this.hp <= 0
   }
 

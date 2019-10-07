@@ -28,6 +28,7 @@ class Game {
     this.towers = []
     this.tick = 0
     this.userHP = 20
+    this.userGold = 100;
   }
 
   run() {
@@ -38,9 +39,9 @@ class Game {
       this._checkEnemyInTowerRange()
       this._checkEnemiesReachGoal()
       this._updateUserHP()
+      this._updateUserGold()
       this._clearEnemiesReachGoal()
       this._clearDeadEnemies()
-
     }, FPS)
   }
 
@@ -85,8 +86,17 @@ class Game {
   }
 
   _clearDeadEnemies() {
+    this._getGoldFromDeadEnemies()
     this.enemies = this.enemies.filter(e => {
       return e.getHP() > 0
+    })
+  }
+
+  _getGoldFromDeadEnemies() {
+    this.enemies.forEach(e => {
+      if (e.isDead()) {
+        this.userGold += e.getGoldGiven()
+      }
     })
   }
 
@@ -111,16 +121,24 @@ class Game {
     HP.innerText = this.userHP
   }
 
+  _updateUserGold() {
+    const gold = document.getElementById("gold-value")
+    gold.innerText = this.userGold
+  }
+
   createTower(pos, type) {
     if (pos.click === LEFT_CLICK) {
       switch (type) {
         case "fire":
           const tower = new FireTower(this.ctx, pos.x, pos.y)
-
-          if (!tower.inPath(this.path, pos, this.widthPath)) {
-            this.towers.push(tower)
+          const towerCost = tower.getCost()
+          // Si tiene pelas
+          if (this.userGold >= towerCost) {
+            if (!tower.inPath(this.path, pos, this.widthPath)) {
+              this.towers.push(tower)
+              this.userGold -= towerCost
+            }
           }
-
           break;
       }
     }

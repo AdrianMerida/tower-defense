@@ -37,19 +37,20 @@ class FireTower {
       this.h
     )
     
-    // // Range
-    // this.ctx.beginPath()
-    // this.ctx.arc(
-    //   this.x,
-    //   this.y,
-    //   this.range,
-    //   0, 2 * Math.PI
-    // );
-    // this.ctx.stroke()
-    // this.ctx.closePath()
+    // Range
+    this.ctx.beginPath()
+    this.ctx.arc(
+      this.x,
+      this.y,
+      this.range,
+      0, 2 * Math.PI
+    );
+    this.ctx.stroke()
+    this.ctx.closePath()
 
     this.bullets.forEach(b => b.draw())
     this._deleteBullets()
+    console.log(this.bullets.length)
   }
 
   move() {
@@ -67,6 +68,10 @@ class FireTower {
 
   _deleteBullets() {
     this.bullets = this.bullets.filter(b => b.reachFinalPosition() === false)
+  }
+
+  getCost() {
+    return this.cost
   }
 
   enemyInRange(e) {
