@@ -50,7 +50,6 @@ class FireTower {
 
     this.bullets.forEach(b => b.draw())
     this._deleteBullets()
-    console.log(this.bullets.length)
   }
 
   move() {
@@ -84,6 +83,10 @@ class FireTower {
     }
 
     return inRange
+  }
+
+  isHitting() {
+    return this.bullets.length > 0
   }
 
   inPath(path, pos, widthPath) {

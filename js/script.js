@@ -9,24 +9,33 @@ window.onload = function () {
   // Events
   canvas.onmousedown = (e) => game.createTower(getCursorPosition(canvas, e), towerActive)
 
-
-  // Towers
-  fireTower.onclick = function () {
+  fireTower.addEventListener("click", function () {
     if (towerActive === "") {
       towerActive = "fire"
     } else {
       towerActive = ""
     }
     fireTower.classList.toggle("tower-active")
-  }
-  
+  });
+
+
+  // // Towers
+  // fireTower.onclick = function () {
+  //   if (towerActive === "") {
+  //     towerActive = "fire"
+  //   } else {
+  //     towerActive = ""
+  //   }
+  //   fireTower.classList.toggle("tower-active")
+  // }
+
   document.getElementById("start-btn").onclick = function () {
     startGame();
   };
 
   // Functions
   function startGame() {
-     game.run()
+    game.run()
   }
 
   function getCursorPosition(canvas, event) {

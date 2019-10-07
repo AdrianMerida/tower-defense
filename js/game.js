@@ -28,7 +28,7 @@ class Game {
     this.towers = []
     this.tick = 0
     this.userHP = 20
-    this.userGold = 100;
+    this.userGold = 1000;
   }
 
   run() {
@@ -74,7 +74,7 @@ class Game {
   _checkEnemiesReachGoal() {
     this.enemies.forEach(e => {
       if (e._reachGoal()) {
-        this._substractHP()
+        this._subtractHP()
       }
     })
   }
@@ -104,15 +104,17 @@ class Game {
   _checkEnemyInTowerRange() {
     this.towers.forEach(tower => {
       this.enemies.forEach(enemie => {
-        if (tower.enemyInRange(enemie)) {
-          enemie.receiveDamage(tower.getPower())
+        if (!tower.isHitting()) {
+          if (tower.enemyInRange(enemie)) {
+            enemie.receiveDamage(tower.getPower())
+          }
         }
       })
     })
   }
 
   // USUARIO
-  _substractHP() {
+  _subtractHP() {
     this.userHP -= 1
   }
 
