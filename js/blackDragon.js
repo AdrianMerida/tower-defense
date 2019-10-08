@@ -3,8 +3,8 @@ class BlackDragon extends Skeleton {
     super(ctx, name, path)
     this.x = this.path[0][0] - 2
     this.y = this.path[0][1] - 2
-    this.w = 30
-    this.h = 30
+    this.w = 35
+    this.h = 35
     this.x0 = this.x
     this.y0 = this.y
     this.speed = 2
