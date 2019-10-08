@@ -53,7 +53,7 @@
   border: 2px solid #F5425A
 }
 
-.game {
+canvas {
   background: url("../Images/fondo_juego.png");
   background-repeat: repeat-x repeat-y;
 }
