@@ -5,7 +5,7 @@ class FireTower {
     this.y = y
     this.w = 30
     this.h = 30
-    this.power = 2
+    this.power = 20
     this.cost = 100
     this.range = 150
     this.type = "fire"

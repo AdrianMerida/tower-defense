@@ -12,6 +12,7 @@ class BlackDragon extends Skeleton {
     this.goldGiven = 50
     this.hp = 500 // Vida
     this.hp0 = this.hp
+    this.hpColor = '#a33400'
 
     // Imagen del enemigo
     this.img = new Image()
@@ -46,7 +47,7 @@ class BlackDragon extends Skeleton {
       this.y - this.h / 2,
       this.w * this.hp / this.hp0,
       5,
-      '#a33400'
+      this.hpColor
     ).draw()
 
     this._animate()

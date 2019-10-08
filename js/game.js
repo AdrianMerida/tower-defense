@@ -24,7 +24,7 @@ class Game {
 
     this.board = new Board(this.ctx, this.path, this.widthPath)
     // this.enemies = []
-    this.enemies = [new BlackDragon(this.ctx,"black-dragon",this.path)]
+    this.enemies = [new AdultBlackDragon(this.ctx,"adult-black-dragon",this.path)]
     this.towers = []
     this.tick = 0
     this.userHP = 20
