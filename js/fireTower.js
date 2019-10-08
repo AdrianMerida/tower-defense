@@ -8,25 +8,16 @@ class FireTower {
     this.power = 2
     this.cost = 100
     this.range = 150
+    this.type = "fire"
 
     this.bullets = []
-  
+
     // Para más adelante
     this.img = new Image()
     this.img.src = "./Images/fireTower.png"
   }
 
   draw() {
-
-    // // Tower
-    // new Rectangle(
-    //   this.ctx,
-    //   this.x - this.w / 2,
-    //   this.y - this.h / 2,
-    //   this.w,
-    //   this.h,
-    //   '#db3535'
-    // ).draw()
 
     // Tower
     this.ctx.drawImage(
@@ -36,7 +27,7 @@ class FireTower {
       this.w,
       this.h
     )
-    
+
     // Range
     this.ctx.beginPath()
     this.ctx.arc(

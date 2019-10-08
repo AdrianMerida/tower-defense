@@ -1,4 +1,4 @@
-class Skeleton extends Enemie {
+class Skeleton extends Enemy {
 
   constructor(ctx, name, path) {
     super(ctx, name, path)

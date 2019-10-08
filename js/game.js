@@ -23,7 +23,8 @@ class Game {
     this.widthPath = 30
 
     this.board = new Board(this.ctx, this.path, this.widthPath)
-    this.enemies = []
+    // this.enemies = []
+    this.enemies = [new BlackDragon(this.ctx,"black-dragon",this.path)]
     this.towers = []
     this.tick = 0
     this.userHP = 20
@@ -53,11 +54,11 @@ class Game {
     this.enemies.forEach(e => e.draw())
     this.towers.forEach(t => t.draw())
 
-    this.tick++
-    if (this.tick % 100 === 0) {
-      this.tick = 0
-      this._addEnemy()
-    }
+    // this.tick++
+    // if (this.tick % 100 === 0) {
+    //   this.tick = 0
+    //   this._addEnemy()
+    // }
   }
 
   _move() {
@@ -112,6 +113,12 @@ class Game {
     })
   }
 
+  _updateTowersQuantity() {
+    const fireTowers = this.towers.filter(t => t.type = 'fire')
+    const fireTowersQty = document.getElementById("fire-qty")
+    fireTowers.innerText = fireTowersQty
+  }
+
   // USUARIO
   _subtractHP() {
     this.userHP -= 1
@@ -142,6 +149,8 @@ class Game {
           }
           break;
       }
+
+      this._updateTowersQuantity()
     }
   }
 

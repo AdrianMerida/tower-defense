@@ -1,4 +1,4 @@
-class Enemie {
+class Enemy {
   constructor(ctx, name, path) {
     this.ctx = ctx
     this.name = name
