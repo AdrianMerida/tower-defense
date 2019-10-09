@@ -3,8 +3,8 @@ class FireTower {
     this.ctx = ctx
     this.x = x
     this.y = y
-    this.w = 30
-    this.h = 30
+    this.w = 75
+    this.h = 75
     this.power = 20
     this.cost = 100
     this.range = 150
@@ -88,7 +88,7 @@ class FireTower {
       const dY = path[i][1] - path[i + 1][1]
 
       if (dX === 0) {// Vertical
-        if (Math.abs(path[i][0] - pos.x) < (widthPath + this.w) &&
+        if (Math.abs(path[i][0] - pos.x) < (widthPath + this.w/2) &&
           (
             (pos.y > path[i][1] - widthPath && pos.y < path[i + 1][1] + widthPath) ||
             (pos.y < path[i][1] + widthPath && pos.y > path[i + 1][1] - widthPath)
@@ -97,7 +97,7 @@ class FireTower {
           collide = true
         }
       } else if (dY === 0) { // Horizontal
-        if (Math.abs(path[i][1] - pos.y) < (widthPath + this.h) &&
+        if (Math.abs(path[i][1] - pos.y) < (widthPath + this.h/2) &&
           (
             (pos.x > path[i][0] - widthPath && pos.x < path[i + 1][0] + widthPath) ||
             (pos.x < path[i][0] + widthPath && pos.x > path[i + 1][0] - widthPath)

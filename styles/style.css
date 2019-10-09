@@ -4,9 +4,9 @@
   box-sizing: border-box;
 }
 
-.bg-white {
-  background-color: #708073;
-}
+.bg-green {
+  background: linear-gradient(-45deg, #3da884, #b3ffff);
+} 
 
 .p-10 {
   padding: 10px;
@@ -20,27 +20,28 @@
   color: #d12139;
 }
 
-.user-hp {
-  margin-left: 10px;
-}
-
 #gold-value {
   color: #b3b334;
 }
 
-.user-gold {
-  margin-left: 10px;
-}
-
-.fire-tower {
+.fire-tower, .ice-tower {
   display: flex;
   justify-content: space-evenly;
-  align-items: center;
 }
+
+.user-panel {
+  display: flex;
+}
+
+.user-gold, .user-hp {
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+}
+
 .towers {
   display: flex;
   justify-content: space-evenly;
-  background: linear-gradient(-45deg, #3da884, #b3ffff);
 }
 
 .towers img {
@@ -56,13 +57,14 @@
 canvas {
   background: url("../Images/fondo_juego.png");
   background-repeat: repeat-x repeat-y;
+  width: 100%;
 }
 
-#user-panel {
-  font-weight: bold;
+#game-board {
   display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  background: url("../Images/lava.png");
-  background-repeat: repeat-x repeat-y;
+}
+
+.vertical-divider {
+     border-left:1px solid #38546d; 
+     border-right:1px solid #16222c; 
 }

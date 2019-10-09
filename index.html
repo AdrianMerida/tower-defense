@@ -29,26 +29,45 @@
 
 <body>
   <div class=game>
-    <div id="user-panel">
+
+    <div class="user-panel bg-green">
+
+      <!-- BTN-START -->
       <button id="start-btn" class="ml-10">Start Game</button>
-      <div class="user-hp bg-white p-10 ml-10">
-        <span id="hp">Vidas: </span><span id="hp-value">20</span>
+
+      <!-- HP -->
+      <div class="user-hp">
+        <span id="hp" class="ml-10">Vidas: </span><span id="hp-value" class="p-10">20</span>
       </div>
-      <div class="user-gold bg-white p-10 ml-10">
-        <span id="gold">Oro: </span><span id="gold-value">0</span>
+      <div class="vertical-divider"></div>
+
+      <!-- ORO -->
+      <div class="user-gold">
+        <span id="gold" class="ml-10">Oro: </span><span id="gold-value" class="p-10">0</span>
       </div>
-      <div class="towers ml-10">
+      <div class="vertical-divider"></div>
+
+      <!-- TORRES -->
+      <div class="towers">
         <div class="fire-tower">
           <img id="fire-tower" class="ml-10" src="./Images/fireTower.png">
           <span id="fire-qty" class="p-10">0</span>
         </div>
+        <div class="vertical-divider"></div>
+        <div class="ice-tower">
+          <img id="ice-tower" class="ml-10" src="./Images/ice-tower.png">
+          <span id="ice-qty" class="p-10">0</span>
+        </div>
       </div>
+      <div class="vertical-divider"></div>
     </div>
 
     <div id="game-board">
-      <canvas id="canvas" width="1425" height="650"></canvas>
+      <canvas id="canvas" width="1425" height="660"></canvas>
     </div>
+
   </div>
+  
 </body>
 
 </html>
