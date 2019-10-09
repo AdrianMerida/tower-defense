@@ -139,7 +139,7 @@ class Game {
   _updateTowersQuantity() {
     const fireTowers = this.towers.filter(t => t.type = 'fire')
     const fireTowersQty = document.getElementById("fire-qty")
-    fireTowers.innerText = fireTowersQty
+    fireTowersQty.innerText = fireTowers.length
   }
 
   // USUARIO
