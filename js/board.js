@@ -19,17 +19,17 @@ class Board {
       this.pat = this.ctx.createPattern(this.img, 'repeat')
     }
 
-    this.boardImg.onload = () => {
-      this.patBoard = this.ctx.createPattern(this.boardImg, 'repeat')
-    }
+    // this.boardImg.onload = () => {
+    //   this.patBoard = this.ctx.createPattern(this.boardImg, 'repeat')
+    // }
 
   }
 
   draw() {
 
     // Fondo
-    this.ctx.fillStyle = this.patBoard
-    this.ctx.fillRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height)
+    // this.ctx.fillStyle = this.patBoard
+    // this.ctx.fillRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height)
 
     // Camino
     this.ctx.fillStyle = this.pat

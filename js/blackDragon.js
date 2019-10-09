@@ -7,7 +7,7 @@ class BlackDragon extends Skeleton {
     this.h = 35
     this.x0 = this.x
     this.y0 = this.y
-    this.speed = 2
+    this.speed = 1.5
 
     this.goldGiven = 50
     this.hp = 500 // Vida

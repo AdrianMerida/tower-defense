@@ -22,9 +22,12 @@ class Game {
 
     this.widthPath = 30
 
+    this.waves = new Wave(this.ctx, this.path)
+    this.waveIndex = 0
+    this.waveEnemiesIndex = 0
+
     this.board = new Board(this.ctx, this.path, this.widthPath)
-    // this.enemies = []
-    this.enemies = [new FinalBoss(this.ctx,"final-boss",this.path)]
+    this.enemies = []
     this.towers = []
     this.tick = 0
     this.userHP = 20
@@ -54,11 +57,11 @@ class Game {
     this.enemies.forEach(e => e.draw())
     this.towers.forEach(t => t.draw())
 
-    // this.tick++
-    // if (this.tick % 100 === 0) {
-    //   this.tick = 0
-    //   this._addEnemy()
-    // }
+    this.tick++
+    if (this.tick % 100 === 0) {
+      this.tick = 0
+      this._addEnemyFromWave()
+    }
   }
 
   _move() {
@@ -69,6 +72,26 @@ class Game {
   // ENEMIGOS
   _addEnemy() {
     this.enemies.push(new Skeleton(this.ctx, "Esqueleto", this.path))
+  }
+
+  _addEnemyFromWave() {
+    // Si no ha acabado la wave, que siga sacando un monstruo
+    if (this.waveEnemiesIndex < this.waves.wave[this.waveIndex].length) {
+      this.enemies.push(this.waves.wave[this.waveIndex][this.waveEnemiesIndex])
+      this.waveEnemiesIndex += 1
+    } else {
+      if (this.waveIndex < this.waves.wave.length) {
+        this._nextWave()
+      } else {
+        // FIN DEL JUEGO
+      }
+    }
+  }
+
+  _nextWave() {
+    this.enemies = []
+    this.waveEnemiesIndex = 0
+    this.waveIndex += 1
   }
 
   _checkEnemiesReachGoal() {
