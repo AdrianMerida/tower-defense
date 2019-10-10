@@ -10,6 +10,7 @@ class Skeleton extends Enemy {
     this.y0 = this.y
     this.pathIndex = 0
     this.tick = 0
+    this.speedReduced = false
 
     // Stats
     this.goldGiven = 10
@@ -137,6 +138,18 @@ class Skeleton extends Enemy {
 
   getGoldGiven() {
     return this.goldGiven
+  }
+
+  reduceSpeed(rate) {
+    const OriginalSpeed = this.speed
+    this.speed *= rate
+    this.speedReduced = true
+
+    // Se le reduce la velocidad durante 5 segundos
+    setTimeout(() => {
+      this.speed = OriginalSpeed
+      this.speedReduced = false
+    }, 5000);
   }
 
 }

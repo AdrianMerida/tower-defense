@@ -126,10 +126,14 @@ class Game {
   // TORRES
   _checkEnemyInTowerRange() {
     this.towers.forEach(tower => {
-      this.enemies.forEach(enemie => {
+      this.enemies.forEach(enemy => {
         if (!tower.isHitting()) {
-          if (tower.enemyInRange(enemie)) {
-            enemie.receiveDamage(tower.getPower())
+          if (tower.enemyInRange(enemy)) {
+            debugger
+            if (tower.type === 'ice' && tower.speedReducted === false) {
+              tower.speedReduction(enemy)
+            }
+            enemy.receiveDamage(tower.getPower())
           }
         }
       })

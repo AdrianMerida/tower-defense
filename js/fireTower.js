@@ -3,13 +3,13 @@ class FireTower {
     this.ctx = ctx
     this.x = x
     this.y = y
-    this.w = 75
-    this.h = 75
+    this.w = 50
+    this.h = 100
     this.power = 20
     this.cost = 100
     this.range = 150
     this.type = "fire"
-
+    
     this.bullets = []
 
     // Para más adelante

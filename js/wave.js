@@ -7,7 +7,7 @@ class Wave {
 
   _createEasyWave() {
     let wave = []
-    for (let i = 1; i <= 2; i++) {
+    for (let i = 1; i <= 30; i++) {
       wave.push(new Skeleton(this.ctx, "skeleton", this.path)) // 30 Skeleton
       if (i % 10 === 0) {
         wave.push(new BlackDragon(this.ctx, "black-dragon", this.path)) // 3 black dragon
