@@ -4,18 +4,24 @@ window.onload = function () {
   const ctx = canvas.getContext("2d")
   const game = new Game(ctx)
   const fireTower = document.getElementById("fire-tower")
+  const iceTower = document.getElementById("ice-tower")
   let towerActive = ""
 
   // Events
-  canvas.onmousedown = (e) => game.createTower(getCursorPosition(canvas, e), towerActive)
+  canvas.onmousedown = (e) => {
+    game.createTower(getCursorPosition(canvas, e), towerActive)
+  }
 
   fireTower.addEventListener("click", function () {
-    if (towerActive === "") {
-      towerActive = "fire"
-    } else {
-      towerActive = ""
-    }
+    towerActive = "fire"
     fireTower.classList.toggle("tower-active")
+    iceTower.classList.remove("tower-active")
+  });
+
+  iceTower.addEventListener("click", function () {
+    towerActive = "ice"
+    fireTower.classList.remove("tower-active")
+    iceTower.classList.toggle("tower-active")
   });
 
   document.getElementById("start-btn").onclick = function () {

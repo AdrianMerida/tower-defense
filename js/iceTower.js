@@ -1,4 +1,4 @@
-class IceTower extends fireTower {
+class IceTower extends FireTower {
   constructor(ctx, x, y) {
     super(ctx, x, y)
     this.w = 75

@@ -26,6 +26,7 @@
 
 .fire-tower, .ice-tower {
   display: flex;
+  align-items: center;
   justify-content: space-evenly;
 }
 
@@ -57,11 +58,6 @@
 canvas {
   background: url("../Images/fondo_juego.png");
   background-repeat: repeat-x repeat-y;
-  width: 100%;
-}
-
-#game-board {
-  display: flex;
 }
 
 .vertical-divider {

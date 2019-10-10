@@ -31,7 +31,7 @@ class Game {
     this.towers = []
     this.tick = 0
     this.userHP = 20
-    this.userGold = 300;
+    this.userGold = 10000;
   }
 
   run() {
@@ -70,10 +70,6 @@ class Game {
   }
 
   // ENEMIGOS
-  _addEnemy() {
-    this.enemies.push(new Skeleton(this.ctx, "Esqueleto", this.path))
-  }
-
   _addEnemyFromWave() {
     // Si no ha acabado la wave, que siga sacando un monstruo
     if (this.waveEnemiesIndex < this.waves.wave[this.waveIndex].length) {
@@ -137,9 +133,21 @@ class Game {
   }
 
   _updateTowersQuantity() {
-    const fireTowers = this.towers.filter(t => t.type = 'fire')
+    this._updateFireTowersQuantity()
+    this._updateIceTowersQuantity()
+  }
+
+  _updateFireTowersQuantity() {
+
+    const fireTowers = this.towers.filter(t => t.type === 'fire')
     const fireTowersQty = document.getElementById("fire-qty")
     fireTowersQty.innerText = fireTowers.length
+  }
+
+  _updateIceTowersQuantity() {
+    const iceTowers = this.towers.filter(t => t.type === 'ice')
+    const iceTowersQty = document.getElementById("ice-qty")
+    iceTowersQty.innerText = iceTowers.length
   }
 
   // USUARIO
@@ -159,22 +167,47 @@ class Game {
 
   createTower(pos, type) {
     if (pos.click === LEFT_CLICK) {
-      switch (type) {
-        case "fire":
-          const tower = new FireTower(this.ctx, pos.x, pos.y)
-          const towerCost = tower.getCost()
-          // Si tiene pelas
-          if (this.userGold >= towerCost) {
-            if (!tower.inPath(this.path, pos, this.widthPath)) {
-              this.towers.push(tower)
-              this.userGold -= towerCost
+      let tower = null
+      let towerCost = 0
+
+      if (!this._towerOverTower(pos)) {
+        switch (type) {
+          case "fire":
+            tower = new FireTower(this.ctx, pos.x, pos.y)
+            towerCost = tower.getCost()
+            // Si tiene pelas
+            if (this.userGold >= towerCost) {
+              if (!tower.inPath(this.path, pos, this.widthPath)) {
+                this.towers.push(tower)
+                this.userGold -= towerCost
+              }
             }
-          }
-          break;
+            break;
+          case "ice":
+            tower = new IceTower(this.ctx, pos.x, pos.y)
+            towerCost = tower.getCost()
+            // Si tiene pelas
+            if (this.userGold >= towerCost) {
+              if (!tower.inPath(this.path, pos, this.widthPath)) {
+                this.towers.push(tower)
+                this.userGold -= towerCost
+              }
+            }
+            break;
+        }
       }
 
       this._updateTowersQuantity()
     }
+  }
+
+  _towerOverTower(pos) {
+    for (let i = 0; i <= this.towers.length - 1; i++) {
+      if (Math.sqrt(Math.pow(this.towers[i].x - pos.x, 2) + Math.pow(this.towers[i].y - pos.y, 2)) <= this.towers[i].w) {
+        return true
+      }
+    }
+    return false
   }
 
 }
