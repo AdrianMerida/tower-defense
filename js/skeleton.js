@@ -2,17 +2,21 @@ class Skeleton extends Enemy {
 
   constructor(ctx, name, path) {
     super(ctx, name, path)
-    this.x = this.path[0][0] -2
-    this.y = this.path[0][1] -2
+    this.x = this.path[0][0] - 2
+    this.y = this.path[0][1] - 2
     this.w = 30
     this.h = 30
     this.x0 = this.x
     this.y0 = this.y
-    this.speed = 2
+    this.pathIndex = 0
+    this.tick = 0
 
+    // Stats
     this.goldGiven = 10
     this.hp = 200 // Vida
     this.hp0 = this.hp
+    this.speed = 2
+    this.hpColor = '#10E348'
 
     // Imagen del enemigo
     this.img = new Image()
@@ -20,9 +24,9 @@ class Skeleton extends Enemy {
     this.img.frames = 3
     this.img.frameIndex = 0
 
-    this.pathIndex = 0
+    this.direction = 0
 
-    this.tick = 0
+
   }
 
 
@@ -33,7 +37,7 @@ class Skeleton extends Enemy {
     this.ctx.drawImage(
       this.img,
       this.img.frameIndex * this.img.width / this.img.frames,
-      this.img.height / 4,
+      this.img.height / 4 * this.direction,
       this.img.width / this.img.frames,
       this.img.height / 4,
       this.x - this.w / 2,
@@ -49,7 +53,7 @@ class Skeleton extends Enemy {
       this.y - this.h / 2,
       this.w * this.hp / this.hp0,
       5,
-      '#10E348'
+      this.hpColor
     ).draw()
 
     this._animate()
@@ -71,14 +75,18 @@ class Skeleton extends Enemy {
     const percentageY = 1 - percentageX
 
     if (distX > 0) {
+      this._updateDirection('right')
       this.x += this.speed * percentageX // derecha
-    } else {
+    } else if (distX < 0) {
+      this._updateDirection('left')
       this.x -= this.speed * percentageX // izquierda
     }
 
     if (distY > 0) {
+      this._updateDirection('down')
       this.y += this.speed * percentageY // abajo
-    } else {
+    } else if (distY < 0) {
+      this._updateDirection('up')
       this.y -= this.speed * percentageY // arriba
     }
 
@@ -88,11 +96,27 @@ class Skeleton extends Enemy {
       (this.y + 1) >= this.path[this.pathIndex][1] &&
       (this.y - 1) <= this.path[this.pathIndex][1]) {
 
-      this.x0 = this.x
-      this.y0 = this.y
+      this.x0 = this.path[this.pathIndex][0]
+      this.y0 = this.path[this.pathIndex][1]
       this.pathIndex += 1
     }
+  }
 
+  _updateDirection(dir) {
+    switch (dir) {
+      case 'up':
+        this.direction = 0
+        break;
+      case 'right':
+        this.direction = 1
+        break;
+      case 'down':
+        this.direction = 2
+        break;
+      case 'left':
+        this.direction = 3
+        break;
+    }
   }
 
   _animate() {

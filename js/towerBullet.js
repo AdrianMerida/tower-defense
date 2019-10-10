@@ -17,7 +17,7 @@ class TowerBullet {
     this.ctx.closePath()
   }
 
-  move() {
+   move() {
     const distX = (this.fpX - this.x)
     const distY = (this.fpY - this.y)
     const percentageX = (Math.abs(distX) / (Math.abs(distX) + Math.abs(distY)))

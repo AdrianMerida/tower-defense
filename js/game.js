@@ -6,7 +6,7 @@ class Game {
     this.ctxH = this.ctx.canvas.height
 
     this.path = [
-      [0, this.ctxH / 2],
+      [0, 0.5 * this.ctxH],
       [0.1 * this.ctxW, 0.5 * this.ctxH],
       [0.1 * this.ctxW, 0.2 * this.ctxH],
       [0.7 * this.ctxW, 0.2 * this.ctxH],
@@ -19,6 +19,9 @@ class Game {
       [0.9 * this.ctxW, 0.5 * this.ctxH],
       [this.ctxW, this.ctxH / 2]
     ]
+
+    // Para que no coja decimales
+    this.path = this.path.map(p => p.map(e => Math.floor(e)))
 
     this.widthPath = 30
 

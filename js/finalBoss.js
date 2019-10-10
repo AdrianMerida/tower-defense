@@ -7,8 +7,11 @@ class FinalBoss extends BlackDragon {
     this.h = 60
     this.x0 = this.x
     this.y0 = this.y
-    this.speed = 0.5
+    this.pathIndex = 0
+    this.tick = 0
 
+    // Stats
+    this.speed = 0.5
     this.goldGiven = 0 // cuando muera es gg
     this.hp = 20000 // Vida
     this.hp0 = this.hp
@@ -20,8 +23,12 @@ class FinalBoss extends BlackDragon {
     this.img.frames = 4
     this.img.frameIndex = 0
 
-    this.pathIndex = 0
+    this.direction = {
+      "down": false,
+      "left": false,
+      "right": false,
+      "up": false
+    }
 
-    this.tick = 0
   }
 }
