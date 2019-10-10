@@ -23,12 +23,7 @@ class FinalBoss extends BlackDragon {
     this.img.frames = 4
     this.img.frameIndex = 0
 
-    this.direction = {
-      "down": false,
-      "left": false,
-      "right": false,
-      "up": false
-    }
+    this.direction = 0
 
   }
 }

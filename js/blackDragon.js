@@ -23,12 +23,7 @@ class BlackDragon extends Skeleton {
     this.img.frames = 4
     this.img.frameIndex = 0
 
-    this.direction = {
-      "down": false,
-      "left": false,
-      "right": false,
-      "up": false
-    }
+    this.direction = 0
   }
 
   // Como el sprite tiene distinta dirección solo es necesario actualizar este método

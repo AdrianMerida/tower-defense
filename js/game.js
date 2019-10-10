@@ -79,8 +79,8 @@ class Game {
       this.enemies.push(this.waves.wave[this.waveIndex][this.waveEnemiesIndex])
       this.waveEnemiesIndex += 1
     } else {
-      if (this.waveIndex < this.waves.wave.length) {
-        this._nextWave()
+      if (this.waveIndex < this.waves.wave.length && this.enemies.length === 0) {
+        setTimeout(this._nextWave(), 3000)
       } else {
         // FIN DEL JUEGO
       }
@@ -91,6 +91,7 @@ class Game {
     this.enemies = []
     this.waveEnemiesIndex = 0
     this.waveIndex += 1
+    this._updateWavesIndicator()
   }
 
   _checkEnemiesReachGoal() {
@@ -151,6 +152,11 @@ class Game {
     const iceTowers = this.towers.filter(t => t.type === 'ice')
     const iceTowersQty = document.getElementById("ice-qty")
     iceTowersQty.innerText = iceTowers.length
+  }
+
+  _updateWavesIndicator() {
+    const waveIndicator = document.getElementById("wave-value")
+    waveIndicator.innerText = this.waveIndex + 1
   }
 
   // USUARIO

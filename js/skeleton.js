@@ -23,10 +23,7 @@ class Skeleton extends Enemy {
     this.img.src = "./Images/skeleton2.png"
     this.img.frames = 3
     this.img.frameIndex = 0
-
     this.direction = 0
-
-
   }
 
 
