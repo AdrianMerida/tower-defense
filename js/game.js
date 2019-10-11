@@ -48,6 +48,7 @@ class Game {
       this._updateUserGold()
       this._clearEnemiesReachGoal()
       this._clearDeadEnemies()
+      this._updateEnemiesQty()
     }, FPS)
   }
 
@@ -176,6 +177,25 @@ class Game {
   _updateUserGold() {
     const gold = document.getElementById("gold-value")
     gold.innerText = this.userGold
+  }
+
+  _updateEnemiesQty() {
+    
+    
+    const skeletons = this.enemies.filter(e => e.name === 'skeleton')
+    const blackDragons = this.enemies.filter(e => e.name === 'black-dragon')
+    const adultBlackDraongs = this.enemies.filter(e => e.name === 'adult-black-dragon')
+    const finalBoss = this.enemies.filter(e => e.name === 'final-boss')
+    const skeletonsQty = document.getElementById("skeleton-qty")
+    const blackDragonsQty = document.getElementById("black-dragon-qty")
+    const adultBlackDraongsQty = document.getElementById("adult-black-dragon-qty")
+    const finalBossQty = document.getElementById("final-boss-qty")
+
+    skeletonsQty.innerText = skeletons.length
+    blackDragonsQty.innerText = blackDragons.length
+    adultBlackDraongsQty.innerText = adultBlackDraongs.length
+    finalBossQty.innerText = finalBoss.length
+
   }
 
   createTower(pos, type) {
