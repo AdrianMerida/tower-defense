@@ -1,9 +1,9 @@
 class IceTower extends FireTower {
   constructor(ctx, x, y) {
     super(ctx, x, y)
-    this.w = 50
-    this.h = 100
-    this.power = 20
+    this.w = 25
+    this.h = 50
+    this.power = 1
     this.cost = 150
     this.range = 125
     this.type = "ice"

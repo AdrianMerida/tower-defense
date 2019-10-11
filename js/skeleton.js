@@ -119,7 +119,7 @@ class Skeleton extends Enemy {
 
   _animate() {
     this.tick++
-    if (this.tick > 20) {
+    if (this.tick > 10) {
       this.tick = 0
       this.img.frameIndex++
     }

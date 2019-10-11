@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -31,43 +32,83 @@
 <body>
   <div class=game>
 
-    <div class="user-panel bg-green">
+    <div id="user-panel" class="bg-green">
+      <div class="user-panel">
 
-      <!-- BTN-START -->
-      <button id="start-btn" class="ml-10">Start Game</button>
-      <div class="vertical-divider ml-10"></div>
+        <!-- BTN-START -->
+        <button id="start-btn" class="ml-10">Start Game</button>
+        <div class="vertical-divider-h ml-10"></div>
+
+        <!-- HP -->
+        <div class="user-hp">
+          <span id="hp" class="ml-10">Vidas: </span><span id="hp-value" class="p-10">20</span>
+        </div>
+        <div class="vertical-divider"></div>
+
+        <!-- ORO -->
+        <div class="user-gold">
+          <span id="gold" class="ml-10">Oro: </span><span id="gold-value" class="p-10">0</span>
+        </div>
+        <div class="vertical-divider"></div>
+
+        <!-- TORRES -->
+        <div class="towers">
+          <div class="fire-tower">
+            <img id="fire-tower" class="ml-10" src="./Images/fireTower.png">
+            <span id="fire-qty" class="p-10">0</span>
+          </div>
+          <div class="vertical-divider"></div>
+          <div class="ice-tower">
+            <img id="ice-tower" class="ml-10" src="./Images/ice-tower.png">
+            <span id="ice-qty" class="p-10">0</span>
+          </div>
+        </div>
+        <div class="vertical-divider"></div>
+
+        <!-- UPGRADE TORRES -->
+        <div class="tower-upgrades">
+          <div class="fire-tower-upgrade">
+            <img id="fire-tower-upgrade" class="ml-10 locked" src="./Images/fire-tower-upgrade.png">
+            <span id="fire-qty-upgrade" class="p-10">0</span>
+          </div>
+          <div class="vertical-divider"></div>
+          <div class="ice-tower-upgrade">
+            <img id="ice-tower-upgrade" class="ml-10 locked" src="./Images/ice-tower-upgrade.png">
+            <span id="ice-qty-upgrade" class="p-10">0</span>
+          </div>
+          <div class="vertical-divider-h"></div>
+        </div>
+      </div>
+
 
       <!-- WAVES -->
       <div class="wave">
-        <span id="wave" class="ml-10">Oleada nº: </span><span id="wave-value" class="p-10">1</span>
-      </div>
-      <div class="vertical-divider"></div>
-
-      <!-- HP -->
-      <div class="user-hp">
-        <span id="hp" class="ml-10">Vidas: </span><span id="hp-value" class="p-10">20</span>
-      </div>
-      <div class="vertical-divider"></div>
-
-      <!-- ORO -->
-      <div class="user-gold">
-        <span id="gold" class="ml-10">Oro: </span><span id="gold-value" class="p-10">0</span>
-      </div>
-      <div class="vertical-divider"></div>
-
-      <!-- TORRES -->
-      <div class="towers">
-        <div class="fire-tower">
-          <img id="fire-tower" class="ml-10" src="./Images/fireTower.png">
-          <span id="fire-qty" class="p-10">0</span>
+        <div class="wave-number">
+          <span id="wave" class="ml-10">Oleada nº:</span><span id="wave-value" class="p-10">1</span>
         </div>
-        <div class="vertical-divider"></div>
-        <div class="ice-tower">
-          <img id="ice-tower" class="ml-10" src="./Images/ice-tower.png">
-          <span id="ice-qty" class="p-10">0</span>
+        <div class="enemies">
+          <div class="vertical-divider"></div>
+          <div class="skeleton group">
+            <img class="ml-10" src="Images/skeleton-alone.png">
+            <span id="skeleton-qty" class="p-10">0</span>
+          </div>
+          <div class="vertical-divider"></div>
+          <div class="black-dragon group">
+            <img class="ml-10" src="Images/black-dragon-alone.png">
+            <span id="black-dragon-qty" class="p-10">0</span>
+          </div>
+          <div class="vertical-divider"></div>
+          <div class="adult-black-dragon group">
+            <img class="ml-10" src="Images/adult-black-dragon-alone.png">
+            <span id="adult-black-dragon-qty" class="p-10">0</span>
+          </div>
+          <div class="vertical-divider"></div>
+          <div class="final-boss group">
+            <img class="ml-10" src="Images/final-boss-alone.png">
+            <span id="final-boss-qty" class="p-10">0</span>
+          </div>
         </div>
       </div>
-      <div class="vertical-divider"></div>
     </div>
 
     <div id="game-board">

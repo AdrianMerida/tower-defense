@@ -129,9 +129,9 @@ class Game {
       this.enemies.forEach(enemy => {
         if (!tower.isHitting()) {
           if (tower.enemyInRange(enemy)) {
-            debugger
-            if (tower.type === 'ice' && tower.speedReducted === false) {
-              tower.speedReduction(enemy)
+            // debugger
+            if (tower.type === 'ice' && enemy.speedReduced === false) {
+              enemy.reduceSpeed(tower.speedReduction)
             }
             enemy.receiveDamage(tower.getPower())
           }

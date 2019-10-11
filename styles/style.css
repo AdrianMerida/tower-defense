@@ -5,7 +5,9 @@
 }
 
 .bg-green {
-  background: linear-gradient(-45deg, #3da884, #b3ffff);
+  /* background: linear-gradient(-45deg, #3da884, #b3ffff); */
+  background-color: #38546d;
+  color: #3da884;
 } 
 
 .p-10 {
@@ -28,17 +30,17 @@
   color: #ad8e8e;
 }
 
-.fire-tower, .ice-tower {
+.fire-tower, .ice-tower, .fire-tower-upgrade, .ice-tower-upgrade {
   display: flex;
   align-items: center;
   justify-content: space-evenly;
 }
 
-.user-panel {
+/* .user-panel {
   display: flex;
-}
+} */
 
-.user-gold, .user-hp, .wave {
+.user-gold, .user-hp {
   display: flex;
   align-items: center;
   font-weight: bold;
@@ -55,6 +57,21 @@
   cursor: pointer;
 }
 
+.enemies img {
+  width: 30px;
+  height: 30px;
+}
+
+.tower-upgrades {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.tower-upgrades img {
+  width: 30px;
+  height: 30px;
+}
+
 .tower-active {
   border: 2px solid #F5425A
 }
@@ -65,6 +82,51 @@ canvas {
 }
 
 .vertical-divider {
-     border-left:1px solid #38546d; 
-     border-right:1px solid #16222c; 
+  border-left:1px solid #38546d; 
+  border-right:1px solid #16222c; 
+}
+
+.vertical-divider-h {
+  border-left:5px solid #38546d; 
+  border-right:5px solid #16222c; 
+}
+
+.locked {
+  opacity: 0.3;
+  cursor: auto;
+}
+
+.unlocked {
+  opacity: 1;
+  cursor: pointer;
+}
+
+.wave {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.enemies {
+  display: flex;
+}
+
+.group {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.user-panel {
+  display: flex;
+}
+
+#user-panel {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.wave {
+  background-color: #38546d;
+  color: #3da884;
 }

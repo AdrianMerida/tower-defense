@@ -3,16 +3,19 @@ class FireTower {
     this.ctx = ctx
     this.x = x
     this.y = y
-    this.w = 50
-    this.h = 100
-    this.power = 20
+    this.w = 25
+    this.h = 50
+
+    // Stats
+    this.power = 2
     this.cost = 100
     this.range = 150
     this.type = "fire"
+    this.upgradeCost = 500
+    this.towerLevel = 1
     
     this.bullets = []
 
-    // Para más adelante
     this.img = new Image()
     this.img.src = "./Images/fireTower.png"
   }
@@ -109,6 +112,13 @@ class FireTower {
     }
 
     return collide
+  }
+
+  upgradeTower() {
+    this.power = 10
+    this.cost = 200
+    this.range = 200
+    this.towerLevel = 2
   }
 
 }
