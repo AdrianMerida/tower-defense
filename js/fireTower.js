@@ -7,7 +7,7 @@ class FireTower {
     this.h = 50
 
     // Stats
-    this.power = 2
+    this.power = 30
     this.cost = 100
     this.range = 150
     this.type = "fire"
@@ -122,6 +122,7 @@ class FireTower {
     this.towerLevel = 2
     this.w = 100
     this.h = 50
+    this.type = "fire-upgrade"
   }
 
 }

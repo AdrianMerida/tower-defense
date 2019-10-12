@@ -8,13 +8,22 @@ class TowerBullet {
     this.r = 2
     this.speed = 20
     this.towerType = towerType
-    this.w = 10
-    this.h = 10
+
+    if (this.towerType === 'fire' || this.towerType === 'ice') {
+      this.w = 6
+      this.h = 6
+    } else {
+      this.w = 12
+      this.h = 12
+    }
+    
 
     this.img = new Image()
     this.img.type = {
       "fire": "./Images/fireBullet.png",
-      "ice": "./Images/iceBullet.png"
+      "ice": "./Images/iceBullet.png",
+      "fire-upgrade": "./Images/fireBulletUpgrade.png",
+      "ice-upgrade": "./Images/iceBulletUpgrade.png",
     }
     
     this.img.src = this.img.type[towerType]

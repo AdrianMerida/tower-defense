@@ -4,6 +4,7 @@ class Game {
     this.intervalID = null
     this.ctxW = this.ctx.canvas.width
     this.ctxH = this.ctx.canvas.height
+    this.gameMode = ""
 
     this.path = [
       [0, 0.5 * this.ctxH],
@@ -78,6 +79,10 @@ class Game {
     this.towers.forEach(t => t.move())
   }
 
+  setMode(mode) {
+    this.gameMode = mode;
+  }
+
   // ENEMIGOS
   _addEnemyFromWave() {
     // Si no ha acabado la wave, que siga sacando un monstruo
@@ -138,7 +143,7 @@ class Game {
       this.enemies.forEach(enemy => {
         if (!tower.isHitting()) {
           if (tower.enemyInRange(enemy)) {
-            if (tower.type === 'ice' && enemy.speedReduced === false) {
+            if ((tower.type === 'ice' || tower.type === 'ice-upgrade') && enemy.speedReduced === false) {
               enemy.reduceSpeed(tower.speedReduction)
             }
             enemy.receiveDamage(tower.getPower())

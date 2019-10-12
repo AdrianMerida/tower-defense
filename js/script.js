@@ -10,17 +10,23 @@ window.onload = function () {
   const iceTower = document.getElementById("ice-tower")
   const fireTowerUpgrade = document.getElementById("fire-tower-upgrade")
   const iceTowerUpgrade = document.getElementById("ice-tower-upgrade")
-  let towerActive = ""
+  const easyMode = document.getElementById("easy-img")
+  const normalMode = document.getElementById("normal-img")
+  const hardMode = document.getElementById("hard-img")
 
+  let towerActive = ""
+  let gameMode = "easy"
+
+  // Events
 
   startGameBtn.addEventListener("click", function () {
     gameInterface.classList.remove("interface")
     gameInterface.classList.add("hide")
     gamePanel.classList.remove("hide")
+    game.setMode(gameMode)
     startGame();
   })
 
-  // Events
   canvas.onmousedown = (e) => {
     game.createTower(getCursorPosition(canvas, e), towerActive)
   }
@@ -61,9 +67,27 @@ window.onload = function () {
     }
   })
 
-  // document.getElementById("start-btn").onclick = function () {
-  //   startGame();
-  // };
+  easyMode.addEventListener("click", function () {
+    gameMode = "easy"
+    easyMode.classList.add("tower-active")
+    normalMode.classList.remove("tower-active")
+    hardMode.classList.remove("tower-active")
+  })
+
+  normalMode.addEventListener("click", function () {
+    gameMode = "normal"
+    easyMode.classList.remove("tower-active")
+    normalMode.classList.add("tower-active")
+    hardMode.classList.remove("tower-active")
+  })
+
+  hardMode.addEventListener("click", function () {
+    gameMode = "hard"
+    easyMode.classList.remove("tower-active")
+    normalMode.classList.remove("tower-active")
+    hardMode.classList.add("tower-active")
+  })
+
 
   // Functions
   function startGame() {

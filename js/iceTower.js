@@ -24,6 +24,7 @@ class IceTower extends FireTower {
     this.w = 100
     this.h = 50
     this.speedReduction = 0.3
+    this.type = "ice-upgrade"
   }
 
 }

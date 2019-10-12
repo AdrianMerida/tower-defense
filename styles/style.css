@@ -22,6 +22,7 @@ html, body {
   margin-left: 10px;
 }
 
+
 #hp-value {
   color: #d12139;
 }
@@ -148,7 +149,7 @@ canvas {
   align-items: center;
 }
 
-.interface p {
+.interface > p {
   margin: 100px auto;
   font-size: 3.5rem;
   font-weight: 900;
@@ -168,4 +169,31 @@ canvas {
   font-size: 2rem;
   font-weight: 600;
   cursor: pointer;
+}
+
+#modes {
+  margin-top: 60px;
+  display: flex;
+  height: 150px;
+  width: 500px;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.group-mode {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.group-mode img {
+  height: 100px;
+  width: 100px;
+  cursor: pointer;
+}
+
+.group-mode p {
+   font-size: 1.2rem;
+   color: whitesmoke;
 }
