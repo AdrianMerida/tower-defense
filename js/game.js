@@ -26,7 +26,7 @@ class Game {
 
     this.widthPath = 30
 
-    this.waves = new Wave(this.ctx, this.path)
+    this.waves = []
     this.waveIndex = 0
     this.waveEnemiesIndex = 0
 
@@ -42,8 +42,10 @@ class Game {
   }
 
   run() {
-
+    
+    this.waves = new Wave(this.ctx, this.path, this.gameMode)
     this.audio.play()
+    
     this.intervalId = setInterval(() => {
       this._clear()
       this._draw()
