@@ -15,6 +15,15 @@ class IceTower extends FireTower {
     this.img.src = "./Images/ice-tower.png"
   }
 
-
+  upgradeTower() {
+    this.img.src = "./Images/ice-tower-upgrade.png"
+    this.power = 7
+    this.cost = 200
+    this.range = 150
+    this.towerLevel = 2
+    this.w = 100
+    this.h = 50
+    this.speedReduction = 0.3
+  }
 
 }

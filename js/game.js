@@ -34,10 +34,15 @@ class Game {
     this.towers = []
     this.tick = 0
     this.userHP = 20
-    this.userGold = 10000;
+    this.userGold = 500;
+    this.audio = new Audio("./Images/evil-sound.mp3")
+    this.audio.loop = true;
+
   }
 
   run() {
+
+    this.audio.play()
     this.intervalId = setInterval(() => {
       this._clear()
       this._draw()
@@ -92,6 +97,9 @@ class Game {
     this.enemies = []
     this.waveEnemiesIndex = 0
     this.waveIndex += 1
+    if (this.waveIndex === 1) { // Oleada nº 2
+      this._unlockUpgradedTowers()
+    }
     this._updateWavesIndicator()
   }
 
@@ -130,7 +138,6 @@ class Game {
       this.enemies.forEach(enemy => {
         if (!tower.isHitting()) {
           if (tower.enemyInRange(enemy)) {
-            // debugger
             if (tower.type === 'ice' && enemy.speedReduced === false) {
               enemy.reduceSpeed(tower.speedReduction)
             }
@@ -144,6 +151,13 @@ class Game {
   _updateTowersQuantity() {
     this._updateFireTowersQuantity()
     this._updateIceTowersQuantity()
+  }
+
+  _unlockUpgradedTowers() {
+    document.querySelectorAll('.locked').forEach(el => {
+      el.classList.remove('locked')
+      el.classList.add('unlocked')
+    })
   }
 
   _updateFireTowersQuantity() {
@@ -180,8 +194,7 @@ class Game {
   }
 
   _updateEnemiesQty() {
-    
-    
+
     const skeletons = this.enemies.filter(e => e.name === 'skeleton')
     const blackDragons = this.enemies.filter(e => e.name === 'black-dragon')
     const adultBlackDraongs = this.enemies.filter(e => e.name === 'adult-black-dragon')
@@ -220,6 +233,28 @@ class Game {
             tower = new IceTower(this.ctx, pos.x, pos.y)
             towerCost = tower.getCost()
             // Si tiene pelas
+            if (this.userGold >= towerCost) {
+              if (!tower.inPath(this.path, pos, this.widthPath)) {
+                this.towers.push(tower)
+                this.userGold -= towerCost
+              }
+            }
+            break;
+          case "fire-upgrade":
+            tower = new FireTower(this.ctx, pos.x, pos.y)
+            tower.upgradeTower()
+            towerCost = tower.getCost()
+            if (this.userGold >= towerCost) {
+              if (!tower.inPath(this.path, pos, this.widthPath)) {
+                this.towers.push(tower)
+                this.userGold -= towerCost
+              }
+            }
+            break;
+          case "ice-upgrade":
+            tower = new IceTower(this.ctx, pos.x, pos.y)
+            tower.upgradeTower()
+            towerCost = tower.getCost()
             if (this.userGold >= towerCost) {
               if (!tower.inPath(this.path, pos, this.widthPath)) {
                 this.towers.push(tower)

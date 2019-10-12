@@ -30,14 +30,26 @@
 </head>
 
 <body>
-  <div class=game>
 
+<audio autoplay="true" src="./Images/evil-sound.mp3"></audio> 
+
+
+  <!-- MENU INICIO -->
+  <div id="interface" class="interface hide">
+    <p>EVIL DEFENSE</p>
+    <ul>
+      <li class="game-option"><a id="start-game-btn">START GAME</a></li>
+    </ul>
+  </div>
+
+  <!-- JUEGO -->
+  <div id ="game-panel" class="game hide">
     <div id="user-panel" class="bg-green">
       <div class="user-panel">
 
         <!-- BTN-START -->
-        <button id="start-btn" class="ml-10">Start Game</button>
-        <div class="vertical-divider-h ml-10"></div>
+        <!-- <button id="start-btn" class="ml-10">Start Game</button>
+        <div class="vertical-divider-h ml-10"></div> -->
 
         <!-- HP -->
         <div class="user-hp">

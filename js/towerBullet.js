@@ -1,5 +1,5 @@
 class TowerBullet {
-  constructor(ctx, x, y, fpX, fpY) {
+  constructor(ctx, x, y, fpX, fpY, towerType) {
     this.ctx = ctx
     this.y = y
     this.x = x
@@ -7,14 +7,33 @@ class TowerBullet {
     this.fpY = fpY // final position Y
     this.r = 2
     this.speed = 20
+    this.towerType = towerType
+    this.w = 10
+    this.h = 10
+
+    this.img = new Image()
+    this.img.type = {
+      "fire": "./Images/fireBullet.png",
+      "ice": "./Images/iceBullet.png"
+    }
+    
+    this.img.src = this.img.type[towerType]
+
   }
 
   draw() {
-    this.ctx.fillStyle = 'red'
-    this.ctx.beginPath();
-    this.ctx.arc(this.x, this.y, this.r, 0, 2 * Math.PI);
-    this.ctx.fill();
-    this.ctx.closePath()
+    // this.ctx.fillStyle = 'red'
+    // this.ctx.beginPath();
+    // this.ctx.arc(this.x, this.y, this.r, 0, 2 * Math.PI);
+    // this.ctx.fill();
+    // this.ctx.closePath()
+    this.ctx.drawImage(
+      this.img,
+      this.x,
+      this.y,
+      this.w,
+      this.h
+    )
   }
 
    move() {

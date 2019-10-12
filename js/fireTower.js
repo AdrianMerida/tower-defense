@@ -70,7 +70,7 @@ class FireTower {
   enemyInRange(e) {
     // Si la hipotenusa es <= al rango de la torre, devuelve true
     const inRange = Math.sqrt((e.x - this.x) * (e.x - this.x) + (e.y - this.y) * (e.y - this.y)) <= this.range
-    const bullet = new TowerBullet(this.ctx, this.x, this.y, e.x, e.y)
+    const bullet = new TowerBullet(this.ctx, this.x, this.y, e.x, e.y, this.type)
 
     if (inRange) {
       this.bullets.push(bullet)
@@ -115,10 +115,13 @@ class FireTower {
   }
 
   upgradeTower() {
+    this.img.src = "./Images/fire-tower-upgrade.png"
     this.power = 10
-    this.cost = 200
+    this.cost = 250
     this.range = 200
     this.towerLevel = 2
+    this.w = 100
+    this.h = 50
   }
 
 }

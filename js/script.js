@@ -1,11 +1,24 @@
 window.onload = function () {
 
+  const gameInterface = document.getElementById("interface")
+  const gamePanel = document.getElementById("game-panel")
+  const startGameBtn = document.getElementById("start-game-btn")
   const canvas = document.getElementById("canvas")
   const ctx = canvas.getContext("2d")
   const game = new Game(ctx)
   const fireTower = document.getElementById("fire-tower")
   const iceTower = document.getElementById("ice-tower")
+  const fireTowerUpgrade = document.getElementById("fire-tower-upgrade")
+  const iceTowerUpgrade = document.getElementById("ice-tower-upgrade")
   let towerActive = ""
+
+
+  startGameBtn.addEventListener("click", function () {
+    gameInterface.classList.remove("interface")
+    gameInterface.classList.add("hide")
+    gamePanel.classList.remove("hide")
+    startGame();
+  })
 
   // Events
   canvas.onmousedown = (e) => {
@@ -14,19 +27,43 @@ window.onload = function () {
 
   fireTower.addEventListener("click", function () {
     towerActive = "fire"
-    fireTower.classList.toggle("tower-active")
+    fireTower.classList.add("tower-active")
     iceTower.classList.remove("tower-active")
+    fireTowerUpgrade.classList.remove("tower-active")
+    iceTowerUpgrade.classList.remove("tower-active")
   });
 
   iceTower.addEventListener("click", function () {
     towerActive = "ice"
     fireTower.classList.remove("tower-active")
-    iceTower.classList.toggle("tower-active")
+    iceTower.classList.add("tower-active")
+    fireTowerUpgrade.classList.remove("tower-active")
+    iceTowerUpgrade.classList.remove("tower-active")
   });
 
-  document.getElementById("start-btn").onclick = function () {
-    startGame();
-  };
+  fireTowerUpgrade.addEventListener("click", function () {
+    if (game.waveIndex === 1) {
+      towerActive = "fire-upgrade"
+      fireTower.classList.remove("tower-active")
+      iceTower.classList.remove("tower-active")
+      fireTowerUpgrade.classList.add("tower-active")
+      iceTowerUpgrade.classList.remove("tower-active")
+    }
+  })
+
+  iceTowerUpgrade.addEventListener("click", function () {
+    if (game.waveIndex === 1) {
+      towerActive = "ice-upgrade"
+      fireTower.classList.remove("tower-active")
+      iceTower.classList.remove("tower-active")
+      fireTowerUpgrade.classList.remove("tower-active")
+      iceTowerUpgrade.classList.add("tower-active")
+    }
+  })
+
+  // document.getElementById("start-btn").onclick = function () {
+  //   startGame();
+  // };
 
   // Functions
   function startGame() {

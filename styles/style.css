@@ -4,6 +4,10 @@
   box-sizing: border-box;
 }
 
+html, body {
+  height: 100%;
+}
+
 .bg-green {
   /* background: linear-gradient(-45deg, #3da884, #b3ffff); */
   background-color: #38546d;
@@ -77,7 +81,7 @@
 }
 
 canvas {
-  background: url("../Images/fondo_juego.png");
+  background: url("../Images/fondo-juego2.png");
   background-repeat: repeat-x repeat-y;
 }
 
@@ -129,4 +133,39 @@ canvas {
 .wave {
   background-color: #38546d;
   color: #3da884;
+}
+
+.hide {
+  display: none;
+}
+
+.interface {
+  background: url("../Images/evil-background.png");
+  background-size: 100% 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.interface p {
+  margin: 100px auto;
+  font-size: 3.5rem;
+  font-weight: 900;
+  background: -webkit-linear-gradient(rgb(176, 223, 161), #333);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.game-option {
+  list-style-type: none;
+}
+
+.game-option a {
+   background: -webkit-linear-gradient(rgb(176, 223, 161), #F5425A);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 2rem;
+  font-weight: 600;
+  cursor: pointer;
 }
