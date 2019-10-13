@@ -17,7 +17,7 @@ class IceTower extends FireTower {
 
   upgradeTower() {
     this.img.src = "./Images/ice-tower-upgrade.png"
-    this.power = 4
+    this.power = 3
     this.cost = 300
     this.range = 150
     this.towerLevel = 2

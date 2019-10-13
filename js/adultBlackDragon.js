@@ -11,8 +11,8 @@ class AdultBlackDragon extends BlackDragon {
     this.tick = 0
     
     // Stats
-    this.speed = 1
-    this.goldGiven = 300
+    this.speed = 1.3
+    this.goldGiven = 200
     this.hp = 2500 // Vida
     this.hp0 = this.hp
     this.hpColor = '#a30e00'

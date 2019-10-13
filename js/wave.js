@@ -6,7 +6,7 @@ class Wave {
     this.wave = [this._createWave1(), this._createWave2(), this._createWave3()]
   }
 
-  //  EASY WAVES
+  // WAVE 1
   _createWave1() {
     let wave = []
     for (let i = 1; i <= 30; i++) {
@@ -30,6 +30,7 @@ class Wave {
     return wave
   }
 
+  // WAVE 2
   _createWave2() {
     let wave = []
     for (let i = 1; i <= 30; i++) {
@@ -64,6 +65,7 @@ class Wave {
     return wave
   }
 
+  // WAVE 3
   _createWave3() {
     let wave = []
     for (let i = 1; i <= 30; i++) {
@@ -88,7 +90,7 @@ class Wave {
           wave.push(new AdultBlackDragon(this.ctx, "adult-black-dragon", this.path)) // 7 Adult dragon
         }
         if (i % 15 === 0) {
-          wave.push(new FinalBoss(this.ctx, "final-boss", this.path)) // 2 Final boss
+          wave.push(new FinalBoss(this.ctx, "final-boss", this.path)) // 3 Final boss
         }
 
       } else {
@@ -98,8 +100,8 @@ class Wave {
         if (i % 3 === 0) {
           wave.push(new AdultBlackDragon(this.ctx, "adult-black-dragon", this.path)) // 10 Adult dragon
         }
-        if (i % 10 === 0) {
-          wave.push(new FinalBoss(this.ctx, "final-boss", this.path)) // 3 Final boss
+        if (i % 5 === 0) {
+          wave.push(new FinalBoss(this.ctx, "final-boss", this.path)) // 6 Final boss
         }
       }
 

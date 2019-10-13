@@ -350,9 +350,10 @@ class Game {
   }
 
   restart() {
+    clearInterval(this.intervalId)
+    this.intervalId = null
     this.state = "normal"
     this._clear()
-    this.intervalId = null
     this.waves = []
     this.waveIndex = 0
     this.waveEnemiesIndex = 0
@@ -361,6 +362,8 @@ class Game {
     this.tick = 0
     this.userHP = 20
     this.userGold = 500
+    this._updateTowersQuantity()
+    this._updateWavesIndicator()
     this.run()
   }
 

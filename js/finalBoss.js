@@ -11,7 +11,7 @@ class FinalBoss extends BlackDragon {
     this.tick = 0
 
     // Stats
-    this.speed = 0.5
+    this.speed = 1
     this.goldGiven = 0 // cuando muera es gg
     this.hp = 20000 // Vida
     this.hp0 = this.hp
