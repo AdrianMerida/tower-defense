@@ -16,7 +16,7 @@ class Skeleton extends Enemy {
     this.goldGiven = 10
     this.hp = 200 // Vida
     this.hp0 = this.hp
-    this.speed = 2
+    this.speed = 50
     this.hpColor = '#10E348'
 
     // Imagen del enemigo

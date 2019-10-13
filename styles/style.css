@@ -197,3 +197,9 @@ canvas {
    font-size: 1.2rem;
    color: whitesmoke;
 }
+
+#restart-btn {
+  background: #38546d;
+  color: white;
+  cursor: pointer;
+}

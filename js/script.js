@@ -13,6 +13,7 @@ window.onload = function () {
   const easyMode = document.getElementById("easy-img")
   const normalMode = document.getElementById("normal-img")
   const hardMode = document.getElementById("hard-img")
+  const restartGameBtn = document.getElementById("restart-btn")
 
   let towerActive = ""
   let gameMode = "easy"
@@ -25,6 +26,10 @@ window.onload = function () {
     gamePanel.classList.remove("hide")
     game.setMode(gameMode)
     startGame();
+  })
+
+  restartGameBtn.addEventListener("click", function () {
+    game.restart()
   })
 
   canvas.onmousedown = (e) => {
@@ -48,7 +53,7 @@ window.onload = function () {
   });
 
   fireTowerUpgrade.addEventListener("click", function () {
-    if (game.waveIndex === 1) {
+    if (game.waveIndex >= 1) {
       towerActive = "fire-upgrade"
       fireTower.classList.remove("tower-active")
       iceTower.classList.remove("tower-active")
@@ -58,7 +63,7 @@ window.onload = function () {
   })
 
   iceTowerUpgrade.addEventListener("click", function () {
-    if (game.waveIndex === 1) {
+    if (game.waveIndex >= 1) {
       towerActive = "ice-upgrade"
       fireTower.classList.remove("tower-active")
       iceTower.classList.remove("tower-active")

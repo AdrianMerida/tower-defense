@@ -1,7 +1,7 @@
 class Game {
   constructor(ctx) {
     this.ctx = ctx
-    this.intervalID = null
+    this.intervalId = null
     this.ctxW = this.ctx.canvas.width
     this.ctxH = this.ctx.canvas.height
     this.gameMode = ""
@@ -34,29 +34,32 @@ class Game {
     this.enemies = []
     this.towers = []
     this.tick = 0
-    this.userHP = 20
-    this.userGold = 500;
+    this.userHP = 1
+    this.userGold = 500
     this.audio = new Audio("./Images/evil-sound.mp3")
     this.audio.loop = true;
+
+    this.gameOverAudio = new Audio("./Images/game-over.mp3")
+
 
   }
 
   run() {
-    
+
     this.waves = new Wave(this.ctx, this.path, this.gameMode)
     this.audio.play()
-    
+
     this.intervalId = setInterval(() => {
       this._clear()
       this._draw()
       this._move()
       this._checkEnemyInTowerRange()
       this._checkEnemiesReachGoal()
-      this._updateUserHP()
       this._updateUserGold()
       this._clearEnemiesReachGoal()
       this._clearDeadEnemies()
       this._updateEnemiesQty()
+      this._updateUserHP()
     }, FPS)
   }
 
@@ -193,6 +196,9 @@ class Game {
   _updateUserHP() {
     const HP = document.getElementById("hp-value")
     HP.innerText = this.userHP
+    if (this.userHP === 0) {
+      this._gameOver()
+    }
   }
 
   _updateUserGold() {
@@ -283,6 +289,37 @@ class Game {
       }
     }
     return false
+  }
+
+  _gameOver() {
+    this.audio.pause()
+    clearInterval(this.intervalId)
+    this.gameOverAudio.play()
+    this.ctx.font = "40px Comic Sans MS";
+    this.ctx.textAlign = "center";
+    this.ctx.fillText(
+      "GAME OVER",
+      this.ctx.canvas.width / 2,
+      this.ctx.canvas.height / 2
+    )
+  }
+
+  restart() {
+    this._clear()
+    this.intervalId = null
+    this.waves = []
+    this.waveIndex = 0
+    this.waveEnemiesIndex = 0
+    this.enemies = []
+    this.towers = []
+    this.tick = 0
+    this.userHP = 20
+    this.userGold = 500
+    this.run()
+  }
+
+  _gameWon() {
+    
   }
 
 }
