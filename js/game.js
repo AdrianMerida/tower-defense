@@ -7,20 +7,36 @@ class Game {
     this.gameMode = ""
     this.state = "normal"
 
+    // this.path = [
+    //   [0, 0.5 * this.ctxH],
+    //   [0.1 * this.ctxW, 0.5 * this.ctxH],
+    //   [0.1 * this.ctxW, 0.2 * this.ctxH],
+    //   [0.7 * this.ctxW, 0.2 * this.ctxH],
+    //   [0.7 * this.ctxW, 0.8 * this.ctxH],
+    //   [0.5 * this.ctxW, 0.8 * this.ctxH],
+    //   [0.5 * this.ctxW, 0.5 * this.ctxH],
+    //   [0.3 * this.ctxW, 0.5 * this.ctxH],
+    //   [0.3 * this.ctxW, 0.2 * this.ctxH],
+    //   [0.9 * this.ctxW, 0.2 * this.ctxH],
+    //   [0.9 * this.ctxW, 0.5 * this.ctxH],
+    //   [this.ctxW, this.ctxH / 2]
+    // ]
+
     this.path = [
       [0, 0.5 * this.ctxH],
       [0.1 * this.ctxW, 0.5 * this.ctxH],
       [0.1 * this.ctxW, 0.2 * this.ctxH],
-      [0.7 * this.ctxW, 0.2 * this.ctxH],
-      [0.7 * this.ctxW, 0.8 * this.ctxH],
-      [0.5 * this.ctxW, 0.8 * this.ctxH],
-      [0.5 * this.ctxW, 0.5 * this.ctxH],
-      [0.3 * this.ctxW, 0.5 * this.ctxH],
-      [0.3 * this.ctxW, 0.2 * this.ctxH],
       [0.9 * this.ctxW, 0.2 * this.ctxH],
-      [0.9 * this.ctxW, 0.5 * this.ctxH],
+      [0.9 * this.ctxW, 0.8 * this.ctxH],
+      [0.1 * this.ctxW, 0.8 * this.ctxH],
+      [0.1 * this.ctxW, 0.5 * this.ctxH],
       [this.ctxW, this.ctxH / 2]
     ]
+
+    // this.path = [
+    //   [0, 0.5 * this.ctxH],
+    //   [this.ctxW, this.ctxH / 2]
+    // ]
 
     // Para que no coja decimales
     this.path = this.path.map(p => p.map(e => Math.floor(e)))
@@ -35,7 +51,7 @@ class Game {
     this.enemies = []
     this.towers = []
     this.tick = 0
-    this.userHP = 1
+    this.userHP = 20
     this.userGold = 500
     this.audio = new Audio("./Images/evil-sound.mp3")
     this.audio.loop = true;
@@ -43,6 +59,12 @@ class Game {
     this.gameOverAudio = new Audio("./Images/game-over.mp3")
     this.gameWonAudio = new Audio("./Images/game-won.mp3")
 
+    this.towerCosts = {
+      "fire": 100,
+      "ice": 150,
+      "fire-upgrade": 250,
+      "ice-upgrade": 300
+    }
 
   }
 
@@ -100,7 +122,7 @@ class Game {
 
       if (this.waveIndex < this.waves.wave.length - 1 && this.enemies.length === 0) {
         setTimeout(this._nextWave(), 3000)
-      } else {
+      } else if (this.waveIndex === this.waves.wave.length - 1 && this.enemies.length === 0) {
         // FIN DEL JUEGO
         this._gameWon()
       }
@@ -127,7 +149,7 @@ class Game {
 
   _clearEnemiesReachGoal() {
     this.enemies = this.enemies.filter(e => {
-      return e.x + e.w <= this.ctx.canvas.width
+      return e.x + e.w / 2 <= this.ctx.canvas.width
     })
   }
 
@@ -175,16 +197,25 @@ class Game {
   }
 
   _updateFireTowersQuantity() {
-
     const fireTowers = this.towers.filter(t => t.type === 'fire')
     const fireTowersQty = document.getElementById("fire-qty")
     fireTowersQty.innerText = fireTowers.length
+
+    // Upgrade
+    const fireUpgradeTowers = this.towers.filter(t => t.type === 'fire-upgrade')
+    const fireUpgradeTowersQty = document.getElementById("fire-qty-upgrade")
+    fireUpgradeTowersQty.innerText = fireUpgradeTowers.length
   }
 
   _updateIceTowersQuantity() {
     const iceTowers = this.towers.filter(t => t.type === 'ice')
     const iceTowersQty = document.getElementById("ice-qty")
     iceTowersQty.innerText = iceTowers.length
+
+    //Upgrade
+    const iceUpgradeTowers = this.towers.filter(t => t.type === 'ice-upgrade')
+    const iceUpgradeTowersQty = document.getElementById("ice-qty-upgrade")
+    iceUpgradeTowersQty.innerText = iceUpgradeTowers.length
   }
 
   _updateWavesIndicator() {
@@ -293,6 +324,13 @@ class Game {
       }
     }
     return false
+  }
+
+  sellTowers(type) {
+    const towerQty = this.towers.filter(t => t.type === type).length
+    this.userGold += this.towerCosts[type] * towerQty
+    this.towers = this.towers.filter(t => t.type !== type)
+    this._updateTowersQuantity()
   }
 
   // GAME EVENTS

@@ -42,7 +42,7 @@
     </ul>
     <div id="modes">
       <div id="easy-mode" class="group-mode">
-        <img id="easy-img" src="./Images/easy-mode.png">
+        <img id="easy-img" class ="tower-active" src="./Images/easy-mode.png">
         <p>Easy mode</p>
       </div>
       <div id="normal-mode" class="group-mode">
@@ -76,13 +76,17 @@
         <!-- TORRES -->
         <div class="towers">
           <div class="fire-tower">
+            <span class="fire-cost ml-10">100 </span> <img src="./Images/coin.png">
             <img id="fire-tower" class="ml-10" src="./Images/fireTower.png">
             <span id="fire-qty" class="p-10">0</span>
+            <button id="sell-fire-btn" class="sell-btn mr-10">SELL</button>
           </div>
           <div class="vertical-divider"></div>
           <div class="ice-tower">
+            <span class="ice-cost ml-10">150 </span> <img src="./Images/coin.png">
             <img id="ice-tower" class="ml-10" src="./Images/ice-tower.png">
             <span id="ice-qty" class="p-10">0</span>
+            <button id="sell-ice-btn" class="sell-btn mr-10">SELL</button>
           </div>
         </div>
         <div class="vertical-divider"></div>
@@ -90,13 +94,17 @@
         <!-- UPGRADE TORRES -->
         <div class="tower-upgrades">
           <div class="fire-tower-upgrade">
+            <span class="fire-upgrade-cost ml-10">250 </span> <img src="./Images/coin.png">
             <img id="fire-tower-upgrade" class="ml-10 locked" src="./Images/fire-tower-upgrade.png">
             <span id="fire-qty-upgrade" class="p-10">0</span>
+            <button id="sell-fire-upgrade-btn" class="sell-btn mr-10">SELL</button>
           </div>
           <div class="vertical-divider"></div>
           <div class="ice-tower-upgrade">
+            <span class="ice-upgrade-cost ml-10">300 </span> <img src="./Images/coin.png">
             <img id="ice-tower-upgrade" class="ml-10 locked" src="./Images/ice-tower-upgrade.png">
             <span id="ice-qty-upgrade" class="p-10">0</span>
+            <button id="sell-ice-upgrade-btn" class="sell-btn mr-10">SELL</button>
           </div>
           <div class="vertical-divider-h"></div>
         </div>
@@ -134,7 +142,7 @@
 
       <!-- BTN-RESTART -->
       <div class="vertical-divider-h ml-10"></div>
-      <button id="restart-btn" class="ml-10 p-10">Restart</button>
+      <button id="restart-btn" class="ml-10 p-3">Restart</button>
 
     </div>
 

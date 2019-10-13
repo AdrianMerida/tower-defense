@@ -3,11 +3,11 @@ class FireTower {
     this.ctx = ctx
     this.x = x
     this.y = y
-    this.w = 25
-    this.h = 50
+    this.w = 30
+    this.h = 40
 
     // Stats
-    this.power = 30
+    this.power = 2.5
     this.cost = 100
     this.range = 150
     this.type = "fire"
@@ -31,16 +31,16 @@ class FireTower {
       this.h
     )
 
-    // Range
-    this.ctx.beginPath()
-    this.ctx.arc(
-      this.x,
-      this.y,
-      this.range,
-      0, 2 * Math.PI
-    );
-    this.ctx.stroke()
-    this.ctx.closePath()
+    // // Range
+    // this.ctx.beginPath()
+    // this.ctx.arc(
+    //   this.x,
+    //   this.y,
+    //   this.range,
+    //   0, 2 * Math.PI
+    // );
+    // this.ctx.stroke()
+    // this.ctx.closePath()
 
     this.bullets.forEach(b => b.draw())
     this._deleteBullets()
@@ -116,12 +116,12 @@ class FireTower {
 
   upgradeTower() {
     this.img.src = "./Images/fire-tower-upgrade.png"
-    this.power = 10
+    this.power = 6
     this.cost = 250
     this.range = 200
     this.towerLevel = 2
-    this.w = 100
-    this.h = 50
+    this.w = 50
+    this.h = 40
     this.type = "fire-upgrade"
   }
 

@@ -1,8 +1,8 @@
 class IceTower extends FireTower {
   constructor(ctx, x, y) {
     super(ctx, x, y)
-    this.w = 25
-    this.h = 50
+    this.w = 30
+    this.h = 40
     this.power = 1
     this.cost = 150
     this.range = 125
@@ -17,12 +17,12 @@ class IceTower extends FireTower {
 
   upgradeTower() {
     this.img.src = "./Images/ice-tower-upgrade.png"
-    this.power = 7
-    this.cost = 200
+    this.power = 4
+    this.cost = 300
     this.range = 150
     this.towerLevel = 2
-    this.w = 100
-    this.h = 50
+    this.w = 50
+    this.h = 40
     this.speedReduction = 0.3
     this.type = "ice-upgrade"
   }

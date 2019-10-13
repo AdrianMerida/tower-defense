@@ -129,7 +129,7 @@ class Skeleton extends Enemy {
   }
 
   _reachGoal() {
-    return ((this.x + this.w) > this.ctx.canvas.width)
+    return ((this.x + this.w / 2) > this.ctx.canvas.width)
   }
 
   isDead() {

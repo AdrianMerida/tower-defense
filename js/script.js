@@ -14,12 +14,15 @@ window.onload = function () {
   const normalMode = document.getElementById("normal-img")
   const hardMode = document.getElementById("hard-img")
   const restartGameBtn = document.getElementById("restart-btn")
+  const sellFireTowersBtn = document.getElementById("sell-fire-btn")
+  const sellIceTowersBtn = document.getElementById("sell-ice-btn")
+  const sellFireUpgradeTowersBtn = document.getElementById("sell-fire-upgrade-btn")
+  const sellIceUpgradeTowersBtn = document.getElementById("sell-ice-upgrade-btn")
 
   let towerActive = ""
   let gameMode = "easy"
 
   // Events
-
   startGameBtn.addEventListener("click", function () {
     gameInterface.classList.remove("interface")
     gameInterface.classList.add("hide")
@@ -72,6 +75,24 @@ window.onload = function () {
     }
   })
 
+  // SELL BUTTONS
+  sellFireTowersBtn.addEventListener("click", function () {
+    game.sellTowers("fire")
+  })
+
+  sellIceTowersBtn.addEventListener("click", function () {
+    game.sellTowers("ice")
+  })
+
+  sellFireUpgradeTowersBtn.addEventListener("click", function () {
+    game.sellTowers("fire-upgrade")
+  })
+
+  sellIceUpgradeTowersBtn.addEventListener("click", function () {
+    game.sellTowers("ice-upgrade")
+  })
+
+  // GAME MODES
   easyMode.addEventListener("click", function () {
     gameMode = "easy"
     easyMode.classList.add("tower-active")

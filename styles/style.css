@@ -18,8 +18,16 @@ html, body {
   padding: 10px;
 }
 
+.p-3 {
+  padding: 3px;
+}
+
 .ml-10 {
   margin-left: 10px;
+}
+
+.mr-10 {
+  margin-right: 10px;
 }
 
 
@@ -201,5 +209,11 @@ canvas {
 #restart-btn {
   background: #38546d;
   color: white;
+  cursor: pointer;
+}
+
+.sell-btn {
+  background-color: transparent;
+  color: #f5db95;
   cursor: pointer;
 }
