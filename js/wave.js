@@ -9,7 +9,7 @@ class Wave {
   //  EASY WAVES
   _createWave1() {
     let wave = []
-    for (let i = 1; i <= 30; i++) {
+    for (let i = 1; i <= 1; i++) {
       wave.push(new Skeleton(this.ctx, "skeleton", this.path)) // 30 Skeleton
 
       if (this.mode === "easy") {
@@ -32,7 +32,7 @@ class Wave {
 
   _createWave2() {
     let wave = []
-    for (let i = 1; i <= 30; i++) {
+    for (let i = 1; i <= 1; i++) {
       wave.push(new Skeleton(this.ctx, "skeleton", this.path)) // 30 Skeletons
 
       if (this.mode === "easy") {
@@ -66,7 +66,7 @@ class Wave {
 
   _createWave3() {
     let wave = []
-    for (let i = 1; i <= 30; i++) {
+    for (let i = 1; i <= 1; i++) {
       wave.push(new Skeleton(this.ctx, "skeleton", this.path)) // 30 Skeletons
 
       if (this.mode === "easy") {

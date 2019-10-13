@@ -40,6 +40,7 @@ class Game {
     this.audio.loop = true;
 
     this.gameOverAudio = new Audio("./Images/game-over.mp3")
+    this.gameWonAudio = new Audio("./Images/game-won.mp3")
 
 
   }
@@ -95,10 +96,12 @@ class Game {
       this.enemies.push(this.waves.wave[this.waveIndex][this.waveEnemiesIndex])
       this.waveEnemiesIndex += 1
     } else {
-      if (this.waveIndex < this.waves.wave.length && this.enemies.length === 0) {
+      
+      if (this.waveIndex < this.waves.wave.length-1 && this.enemies.length === 0) {
         setTimeout(this._nextWave(), 3000)
       } else {
         // FIN DEL JUEGO
+        this._gameWon()
       }
     }
   }
@@ -295,8 +298,9 @@ class Game {
     this.audio.pause()
     clearInterval(this.intervalId)
     this.gameOverAudio.play()
-    this.ctx.font = "40px Comic Sans MS";
+    this.ctx.font = "60px Comic Sans MS";
     this.ctx.textAlign = "center";
+    this.ctx.fillStyle = '#ad400e'
     this.ctx.fillText(
       "GAME OVER",
       this.ctx.canvas.width / 2,
@@ -319,7 +323,17 @@ class Game {
   }
 
   _gameWon() {
-    
+    this.audio.pause()
+    clearInterval(this.intervalId)
+    this.gameWonAudio.play()
+    this.ctx.font = "60px Comic Sans MS";
+    this.ctx.textAlign = "center";
+    this.ctx.fillStyle = '#71c994'
+    this.ctx.fillText(
+      "YOU WIN",
+      this.ctx.canvas.width / 2,
+      this.ctx.canvas.height / 2
+    )
   }
 
 }
