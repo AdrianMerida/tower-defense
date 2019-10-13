@@ -5,6 +5,7 @@ class Game {
     this.ctxW = this.ctx.canvas.width
     this.ctxH = this.ctx.canvas.height
     this.gameMode = ""
+    this.state = "normal"
 
     this.path = [
       [0, 0.5 * this.ctxH],
@@ -96,8 +97,8 @@ class Game {
       this.enemies.push(this.waves.wave[this.waveIndex][this.waveEnemiesIndex])
       this.waveEnemiesIndex += 1
     } else {
-      
-      if (this.waveIndex < this.waves.wave.length-1 && this.enemies.length === 0) {
+
+      if (this.waveIndex < this.waves.wave.length - 1 && this.enemies.length === 0) {
         setTimeout(this._nextWave(), 3000)
       } else {
         // FIN DEL JUEGO
@@ -294,7 +295,9 @@ class Game {
     return false
   }
 
+  // GAME EVENTS
   _gameOver() {
+    this.game = "game-over"
     this.audio.pause()
     clearInterval(this.intervalId)
     this.gameOverAudio.play()
@@ -309,6 +312,7 @@ class Game {
   }
 
   restart() {
+    this.state = "normal"
     this._clear()
     this.intervalId = null
     this.waves = []
@@ -323,6 +327,7 @@ class Game {
   }
 
   _gameWon() {
+    this.state = "game-won"
     this.audio.pause()
     clearInterval(this.intervalId)
     this.gameWonAudio.play()
@@ -334,6 +339,26 @@ class Game {
       this.ctx.canvas.width / 2,
       this.ctx.canvas.height / 2
     )
+  }
+
+  pauseGame() {
+    if (this.state === "normal") {
+      this.state = "pause"
+      this.audio.pause()
+      clearInterval(this.intervalId)
+      this.ctx.font = "60px Comic Sans MS";
+      this.ctx.textAlign = "center";
+      this.ctx.fillStyle = '#1be0da'
+      this.ctx.fillText(
+        "PAUSE",
+        this.ctx.canvas.width / 2,
+        this.ctx.canvas.height / 2
+      )
+    } else if (this.state === "pause") {
+      this.state = "normal"
+      this.audio.play()
+      this.run()
+    }
   }
 
 }

@@ -93,6 +93,13 @@ window.onload = function () {
     hardMode.classList.add("tower-active")
   })
 
+  // Pausa
+  document.onkeydown = (e) => {
+    if (e.keyCode === PAUSE) {
+      game.pauseGame()
+    }
+  }
+
 
   // Functions
   function startGame() {
