@@ -59,6 +59,16 @@ html, body {
   font-weight: bold;
 }
 
+.user-hp img {
+  width: 30px;
+  height: 30px;
+}
+
+.user-gold img {
+  width: 30px;
+  height: 30px;
+}
+
 .towers {
   display: flex;
   justify-content: space-evenly;
@@ -215,5 +225,27 @@ canvas {
 .sell-btn {
   background-color: transparent;
   color: #f5db95;
+  cursor: pointer;
+}
+
+#audio {
+  display: flex;
+  align-items: center;
+}
+
+.audio-on {
+  background: url("../Images/audio-on.png");
+  width: 30px;
+  height: 30px;
+  background-size: 100% 100%;
+  border: 0;
+  cursor: pointer;
+}
+
+.audio-off {
+  background: url("../Images/audio-off.png");
+  width: 30px;
+  height: 30px;
+  background-size: 100% 100%;
   cursor: pointer;
 }

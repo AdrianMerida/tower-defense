@@ -56,6 +56,8 @@ class Game {
     this.audio = new Audio("./Images/evil-sound.mp3")
     this.audio.loop = true;
 
+    this.audioMode = "on"
+
     this.gameOverAudio = new Audio("./Images/game-over.mp3")
     this.gameWonAudio = new Audio("./Images/game-won.mp3")
 
@@ -334,6 +336,17 @@ class Game {
   }
 
   // GAME EVENTS
+
+  swapAudioMode() {
+    if (this.audioMode === "on") {
+      this.audioMode = "off"
+      this.audio.muted = true
+    } else {
+      this.audioMode = "on"
+      this.audio.muted = false
+    }
+  }
+
   _gameOver() {
     this.game = "game-over"
     this.audio.pause()
@@ -350,6 +363,7 @@ class Game {
   }
 
   restart() {
+    this.gameWonAudio.pause()
     clearInterval(this.intervalId)
     this.intervalId = null
     this.state = "normal"

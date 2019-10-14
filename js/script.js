@@ -18,6 +18,7 @@ window.onload = function () {
   const sellIceTowersBtn = document.getElementById("sell-ice-btn")
   const sellFireUpgradeTowersBtn = document.getElementById("sell-fire-upgrade-btn")
   const sellIceUpgradeTowersBtn = document.getElementById("sell-ice-upgrade-btn")
+  const audioBtn = document.getElementById("audio-btn")
 
   let towerActive = ""
   let gameMode = "easy"
@@ -121,6 +122,20 @@ window.onload = function () {
     }
   }
 
+  // Audio
+  audioBtn.addEventListener("click", function () {
+    audioBtn.classList.toggle("audio-on")
+    audioBtn.classList.toggle("audio-off")
+    game.swapAudioMode()
+  })
+
+  document.addEventListener("keydown", function (e) {
+    if (e.keyCode === MUTE) {
+      audioBtn.classList.toggle("audio-on")
+      audioBtn.classList.toggle("audio-off")
+      game.swapAudioMode()
+    }
+  })
 
   // Functions
   function startGame() {
